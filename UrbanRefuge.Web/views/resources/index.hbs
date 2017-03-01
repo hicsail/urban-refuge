@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>Index</h2>
+  <hr />
+  <p>
+    <a href="/resources/create" class="btn btn-primary">Create New</a>
+  </p>
+
+  <form method="post" action="resources/index">
+      <label class="col-md-2">Find by name:</label>
+      <div class="col-md-6">
+        <input name="name" class="form-control" />
+      </div>
+      <input type="submit" value="Search" class="btn btn-default" />
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each resources}}
+        <tr>
+          <td>
+            {{this.name}}
+          </td>
+          <td>
+            {{this.primaryType}}
+          </td>
+          <td>
+            {{this.latitude}}
+          </td>
+          <td>
+            {{this.longitude}}
+          </td>
+          <td>
+            <a href="resources/edit" class="btn btn-default">Edit</a>
+            <a href="resources/view" class="btn btn-primary">Details</a>
+            <a href="resources/delete" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <cs-pager cs-paging-pagesize="@Model.Paging.ItemsPerPage"
+  cs-paging-pagenumber="@Model.Paging.CurrentPage"
+  cs-paging-totalitems="@Model.Paging.TotalItems"
+  asp-route-query= "@Model.Query"
+  cs-pagenumber-param="page"
+  asp-controller="RefugeResources"
+  asp-action="Index"></cs-pager>
+</div>

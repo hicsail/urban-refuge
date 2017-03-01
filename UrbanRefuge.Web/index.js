@@ -32,7 +32,10 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 /* routes */
 app.get('/', home.index);
+app.get('/resources/index', resources.index);
 app.get('/resources/create', resources.create);
+app.get('/resources/view', resources.view);
+app.get('/resources/edit', resources.edit);
 
 app.listen(3000, function () {
   console.log('Urban Refuge is listening on port 3000!');
