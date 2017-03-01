@@ -1,4 +1,4 @@
-let User = require('../models/users');
+let User = require('../models/user');
 
 /* Save a user */
 let saveUser = function (req, res) {
