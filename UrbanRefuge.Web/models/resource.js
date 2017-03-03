@@ -48,5 +48,6 @@ module.exports = {
   findById : function(id) { return Resource.find({where:{id:id}});},
   create : function(resource) { return Resource.create(resource);},
   update : function (resource) { return Resource.update(resource, {where: {id: resource.resourceid}});},
-  delete : function (id) { return Resource.destroy({where:{id:id}});}
+  delete : function (id) { return Resource.destroy({where:{id:id}});},
+  filter : function (terms) {terms = '%'+terms+'%'; return Resource.findAll({where:{name:{$like: terms}}});}
 };

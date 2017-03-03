@@ -4,7 +4,8 @@ exports.getIndex = function(req, res) {
   Resource.findAll().then((resources) => {
     res.render('resources/index.hbs', {
       title: 'Resources',
-      resources: resources
+      resources: resources,
+      search: ""
     });
   });
 };
@@ -14,7 +15,13 @@ exports.postIndex = function(req, res) {
     req.flash('error','Please select resource');
     return res.redirect('/resources/index');
   } else {
-
+    Resource.filter(req.body.search).then((resources) => {
+      res.render('resources/index.hbs', {
+        title: 'Resources',
+        resources: resources,
+        search: req.body.search
+      });
+    });
   }
 };
 
