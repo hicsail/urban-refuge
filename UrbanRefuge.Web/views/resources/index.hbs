@@ -38,20 +38,23 @@
             {{this.longitude}}
           </td>
           <td>
-            <a href="resources/edit" class="btn btn-default">Edit</a>
-            <a href="resources/view" class="btn btn-primary">Details</a>
-            <a href="resources/delete" class="btn btn-danger">Delete</a>
+            <div class="row">
+              <form class="col-md-2" method="POST" action="/resources/view">
+                <input hidden name="resource" value="{{this.id}}">
+                <input type="submit" value="Details" class="btn btn-primary" />
+              </form>
+              <form class="col-md-2" method="POST" action="/resources/edit">
+                <input hidden name="resource" value="{{this.id}}">
+                <input type="submit" value="Edit" class="btn btn-default" />
+              </form>
+              <form class="col-md-2" method="POST" action="/resources/delete">
+                <input hidden name="resource" value="{{this.id}}">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+              </form>
+            </div>
           </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-
-  <cs-pager cs-paging-pagesize="@Model.Paging.ItemsPerPage"
-  cs-paging-pagenumber="@Model.Paging.CurrentPage"
-  cs-paging-totalitems="@Model.Paging.TotalItems"
-  asp-route-query= "@Model.Query"
-  cs-pagenumber-param="page"
-  asp-controller="RefugeResources"
-  asp-action="Index"></cs-pager>
 </div>

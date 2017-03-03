@@ -25,7 +25,17 @@
     <dd>{{resource.notes}}</dd>
     <dt>Ariabic Notes</dt>
     <dd>{{resource.ariabicNotes}}</dd>
+    <hr/>
+    <dt>ID</dt>
+    <dd>{{resource.id}}</dd>
+    <dt>Created At</dt>
+    <dd>{{resource.createdAt}}</dd>
+    <dt>Last Updated At</dt>
+    <dd>{{resource.updatedAt}}</dd>
   </dl>
-  <a href="/resources/edit" class="btn btn-primary">Edit</a>
-  <a href="/" class="btn btn-default">Back to List</a>
+  <form method="POST" action="/resources/edit">
+    <input hidden name="resource" value="{{resource.id}}">
+    <input type="submit" value="Edit" class="btn btn-primary" />
+    <a href="/resources/index" class="btn btn-default">Back to List</a>
+  </form>
 </div>

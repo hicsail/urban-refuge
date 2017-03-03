@@ -1,9 +1,10 @@
 <div class="container">
   <h2>Edit</h2>
-  <form method="POST" action="/resources/edit">
+  <form method="POST" action="/resources/update">
     <div class="form-horizontal">
       <h4>Refuge Resource</h4>
       <hr />
+      <input name="resourceid" type="hidden" value="{{resource.id}}"/>
       <div class="form-group">
         <label class="col-md-2 control-label">Name</label>
         <div class="col-md-10">
@@ -91,13 +92,13 @@
 
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-          <input type="submit" value="Create" class="btn btn-primary" />
+          <input type="submit" value="Edit" class="btn btn-primary" />
         </div>
       </div>
     </div>
   </form>
   <div>
-    <a href="/" class="btn btn-default col-md-offset-2">Back to List</a>
+    <a href="/resources/index" class="btn btn-default col-md-offset-2">Back to List</a>
   </div>
 </div>
 <script>

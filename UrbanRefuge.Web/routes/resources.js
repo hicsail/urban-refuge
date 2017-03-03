@@ -9,6 +9,15 @@ exports.getIndex = function(req, res) {
   });
 };
 
+exports.postIndex = function(req, res) {
+  if(req.body == undefined) {
+    req.flash('error','Please select resource');
+    return res.redirect('/resources/index');
+  } else {
+
+  }
+};
+
 exports.getCreate = function(req, res) {
   res.render('resources/create.hbs', {
     title: 'Create Resources',
@@ -18,52 +27,57 @@ exports.getCreate = function(req, res) {
 
 exports.postCreate = function(req, res) {
   if(req.body == undefined){
-    req.flash('errors',{ msg: 'Please Enter in Fields'});
+    req.flash('error','Please enter in all fields');
     return res.redirect('/resources/create');
   } else {
     Resource.create(req.body).then(() => {
-      req.flash('sucesss',{ msg: 'Resource Added'});
+      req.flash('success','Resource Added');
       return res.redirect('/resources/index');
     });
   }
 };
 
-
-exports.view = function(req, res) {
-  res.render('resources/view.hbs', {
-    title: 'View Resources',
-    resource: {
-      name: "test",
-      ariabicName: "اختبار",
-      latitude: 31.7213531,
-      longitude: 35.6249074,
-      primaryType: "Health",
-      types: "Health, Food",
-      address: "The Jordan Museum, Ali Ben Abi Taleb St. 10, Amman 11183, Jordan",
-      ariabicAddress: "متحف الأردن، علي بن أبي طالب سانت 10، عمان 11183، الأردن",
-      phone: "+962 6 462 9317",
-      notes: "cool place",
-      ariabicNotes: "مكان بارد"
-    }
-  });
+exports.postView = function(req, res) {
+  if(req.body == undefined){
+    req.flash('error','Please select a resource');
+    return res.redirect('/resources/index');
+  } else {
+    Resource.findById(req.body.resource).then((resource) => {
+      if(resource.dataValues) {
+        res.render('resources/view.hbs', {
+            title: 'View Resources',
+            resource: resource.dataValues
+        });
+      }
+    });
+  }
 };
 
-exports.edit = function(req, res) {
-  res.render('resources/edit.hbs', {
-    title: 'Edit Resources',
-    resource: {
-      name: "test",
-      ariabicName: "اختبار",
-      latitude: 31.7213531,
-      longitude: 35.6249074,
-      primaryType: "Health",
-      types: "Health, Food",
-      address: "The Jordan Museum, Ali Ben Abi Taleb St. 10, Amman 11183, Jordan",
-      ariabicAddress: "متحف الأردن، علي بن أبي طالب سانت 10، عمان 11183، الأردن",
-      phone: "+962 6 462 9317",
-      notes: "cool place",
-      ariabicNotes: "مكان بارد"
-    },
-    types: ['Health','Education','Food']
-  });
+exports.postEdit = function(req, res) {
+  if(req.body == undefined){
+    req.flash('error','Please select a resource');
+    return res.redirect('/resources/index');
+  } else {
+    Resource.findById(req.body.resource).then((resource) => {
+      if(resource.dataValues) {
+        res.render('resources/edit.hbs', {
+            title: 'Edit Resources',
+            resource: resource.dataValues,
+            types: ['Health','Education','Food']
+        });
+      }
+    });
+  }
+}
+
+exports.Edit = function(req, res) {
+  if(req.body == undefined){
+    req.flash('error','Please enter all resource fields');
+    return res.redirect('/resources/edit');
+  } else {
+    Resource.update(req.body).then(() => {
+      req.flash('sucesss','Resource Updated');
+      return res.redirect('/resources/index');
+    });
+  }
 };

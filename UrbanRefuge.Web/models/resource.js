@@ -45,5 +45,7 @@ Resource.sync();
 
 module.exports = {
   findAll : function() { return Resource.findAll(); },
-  create : function(resource) { return Resource.create(resource)}
+  findById : function(id) { return Resource.find({where:{id:id}});},
+  create : function(resource) { return Resource.create(resource);},
+  update : function (resource) { return Resource.update(resource, {where: {id: resource.resourceid}});}
 };
