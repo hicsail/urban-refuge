@@ -43,6 +43,7 @@ app.post('/resources/create', resources.postCreate);
 app.post('/resources/view', resources.postView);
 app.post('/resources/edit', resources.postEdit);
 app.post('/resources/update', resources.Edit);
+app.post('/resources/delete', resources.delete);
 
 app.listen(3000, function () {
   console.log('Urban Refuge is listening on port 3000');

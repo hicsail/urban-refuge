@@ -47,5 +47,6 @@ module.exports = {
   findAll : function() { return Resource.findAll(); },
   findById : function(id) { return Resource.find({where:{id:id}});},
   create : function(resource) { return Resource.create(resource);},
-  update : function (resource) { return Resource.update(resource, {where: {id: resource.resourceid}});}
+  update : function (resource) { return Resource.update(resource, {where: {id: resource.resourceid}});},
+  delete : function (id) { return Resource.destroy({where:{id:id}});}
 };

@@ -70,6 +70,18 @@ exports.postEdit = function(req, res) {
   }
 }
 
+exports.delete = function(req, res) {
+  if(req.body == undefined){
+    req.flash('error','Please select a resource');
+    return res.redirect('/resources/index');
+  } else {
+    Resource.delete(req.body.resource).then((resource) => {
+      req.flash('error','Please select a resource');
+      return res.redirect('/resources/index');
+    });
+  }
+};
+
 exports.Edit = function(req, res) {
   if(req.body == undefined){
     req.flash('error','Please enter all resource fields');
