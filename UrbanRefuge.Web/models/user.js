@@ -3,11 +3,8 @@ let Sequelize = require('sequelize');
 let sequelize = new Sequelize(config.database);
 
 let User = sequelize.define('users', {
-  firstName: {
+  email: {
     type: Sequelize.STRING,
-  },
-  lastName: {
-    type: Sequelize.STRING
   }
 }, {
   timestamps: true, // Add timestamps

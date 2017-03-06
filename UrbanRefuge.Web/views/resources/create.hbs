@@ -37,7 +37,7 @@
         <div class="col-md-10">
           <select name="primaryType" class="form-control">
             {{#each types}}
-            <option>{{this}}</option>
+            <option>{{this.dataValues.name}}</option>
             {{/each}}
           </select>
         </div>
@@ -48,7 +48,7 @@
         <div class="col-md-10">
           <select multiple name="types" class="form-control">
             {{#each types}}
-            <option>{{this}}</option>
+            <option>{{this.dataValues.name}}</option>
             {{/each}}
           </select>
         </div>

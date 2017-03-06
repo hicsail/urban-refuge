@@ -1,4 +1,5 @@
 let Resource = require('../models/resource');
+let Type = require('../models/type');
 
 exports.getIndex = function(req, res) {
   Resource.findAll().then((resources) => {
@@ -26,9 +27,13 @@ exports.postIndex = function(req, res) {
 };
 
 exports.getCreate = function(req, res) {
-  res.render('resources/create.hbs', {
-    title: 'Create Resources',
-    types: ['Health','Education','Food']
+  Type.findAll().then((types)=>{
+    if(types) {
+      res.render('resources/create.hbs', {
+        title: 'Create Resources',
+        types: types
+      });
+    }
   });
 };
 
@@ -67,10 +72,12 @@ exports.postEdit = function(req, res) {
   } else {
     Resource.findById(req.body.resource).then((resource) => {
       if(resource.dataValues) {
-        res.render('resources/edit.hbs', {
-            title: 'Edit Resources',
-            resource: resource.dataValues,
-            types: ['Health','Education','Food']
+        Type.findAll().then((types)=>{
+          res.render('resources/edit.hbs', {
+              title: 'Edit Resources',
+              resource: resource.dataValues,
+              types: types
+          });
         });
       }
     });
