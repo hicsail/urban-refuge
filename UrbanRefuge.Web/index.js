@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 let passport = require('passport');
+var Auth0Strategy = require('passport-auth0');
 let hbs = require('hbs');
 let session = require('express-session');
 let flash = require('express-flash');
@@ -23,11 +24,11 @@ app.use(session({
 }));
 app.use(flash());
 
-/* initialize passport
+/* initialize passport */
 let passportConf = require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
-*/
+
 
 /* initialize handlebars */
 app.set('view engine', 'hbs');
@@ -36,6 +37,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 /* routes */
 app.get('/', home.index);
+app.get('/login',users.getLogin);
 app.get('/resources/index', resources.getIndex);
 app.post('/resources/index', resources.postIndex);
 app.get('/resources/create', resources.getCreate);

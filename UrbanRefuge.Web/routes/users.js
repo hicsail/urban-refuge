@@ -1,18 +1,22 @@
 let User = require('../models/user');
+let config = require('../config/config');
 
-/* Save a user */
-let saveUser = function (req, res) {
-	new User({
-		username: req.body.username,
-		email: req.body.email,
-		name: req.body.name,
-		age: req.body.age,
-		location: req.body.location
-	}).save()
-		.then(function (user) {
-			res.json(user);
-		}).catch(function (error) {
-			console.log(error);
-			res.send('An error occured');
-		});
+exports.getLogin = function(req, res) {
+  res.render('login.hbs', {
+    domain: config.domain,
+    clientID: config.clientID,
+    callbackURL: config.callbackURL
+  });
+};
+
+exports.logout = function(req, res) {
+	req.logout();
+  res.redirect('/');
+};
+
+exports.callback = function(req, res) {
+	passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
+  function(req, res) {
+    res.redirect(req.session.returnTo || '/user');
+  };
 };
