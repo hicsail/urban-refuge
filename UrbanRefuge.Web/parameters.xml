@@ -1,0 +1,1 @@
+<parameters> <parameter name="IIS Web Application Name" defaultValue="MyApp" tags="IisApp" /> </parameters>

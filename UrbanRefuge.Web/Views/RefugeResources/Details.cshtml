@@ -1,0 +1,84 @@
+@model UrbanRefuge.Web.ViewModels.RefugeResourceViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Model.ResourceLanguage1.Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage1.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage2.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage2.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrimaryType)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posistion.Latitude)
+            @Html.DisplayNameFor(model => model.Posistion.Longitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Posistion.Latitude)
+            @Html.DisplayFor(model => model.Posistion.Longitude)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage1.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage1.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage2.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage2.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage1.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage1.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage1.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage1.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceLanguage2.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResourceLanguage2.Notes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ResourceId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

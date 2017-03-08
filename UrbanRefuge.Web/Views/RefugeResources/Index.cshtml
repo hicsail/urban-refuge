@@ -1,0 +1,67 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model UrbanRefuge.Web.ViewModels.RefugeResourcePagedViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-action="Index">
+    <p>
+        Find by name: @Html.TextBox("query", Model.Query)
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>
+                    Lat
+                </th>
+                <th>
+                    Long
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Resources)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResourceLanguage1.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrimaryType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Posistion.Latitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Posistion.Longitude)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ResourceId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ResourceId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ResourceId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <cs-pager cs-paging-pagesize="@Model.Paging.ItemsPerPage"
+              cs-paging-pagenumber="@Model.Paging.CurrentPage"
+              cs-paging-totalitems="@Model.Paging.TotalItems"
+              asp-route-query= "@Model.Query"
+              cs-pagenumber-param="page"
+              asp-controller="RefugeResources"
+              asp-action="Index"></cs-pager>

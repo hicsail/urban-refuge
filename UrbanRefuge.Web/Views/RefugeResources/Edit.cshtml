@@ -1,0 +1,115 @@
+@model UrbanRefuge.Web.ViewModels.RefugeResourceViewModel
+@using UrbanRefuge.Web.ViewModels
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>@Model.ResourceLanguage1.Name</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ResourceId" />
+        <div class="form-group">
+            <label asp-for="ResourceLanguage1.Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ResourceLanguage1.Name" class="form-control" />
+                <span asp-validation-for="ResourceLanguage1.Name" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Ariabic Name</label>
+            <div class="col-md-10">
+                <input asp-for="ResourceLanguage2.Name" class="form-control rtl" />
+                <span asp-validation-for="ResourceLanguage2.Name" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Posistion.Latitude" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Posistion.Latitude" class="form-control" />
+                <span asp-validation-for="Posistion.Latitude" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Posistion.Longitude" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Posistion.Longitude" class="form-control" />
+                <span asp-validation-for="Posistion.Longitude" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PrimaryType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PrimaryType" class="form-control" asp-items="Html.GetEnumSelectList<ResourceTypes>()"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Types" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Types" multiple class="form-control" asp-items="Html.GetEnumSelectList<ResourceTypes>()"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResourceLanguage1.Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="ResourceLanguage1.Address" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="ResourceLanguage1.Address" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Ariabic Address</label>
+            <div class="col-md-10">
+                <textarea asp-for="ResourceLanguage2.Address" class="form-control rtl" rows="4"></textarea>
+                <span asp-validation-for="ResourceLanguage2.Address" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResourceLanguage1.Phone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ResourceLanguage1.Phone" class="form-control" />
+                <span asp-validation-for="ResourceLanguage1.Phone" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResourceLanguage1.Notes" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="ResourceLanguage1.Notes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="ResourceLanguage1.Notes" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Ariabic Notes</label>
+            <div class="col-md-10">
+                <textarea asp-for="ResourceLanguage2.Notes" class="form-control rtl" rows="3"></textarea>
+                <span asp-validation-for="ResourceLanguage2.Notes" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
