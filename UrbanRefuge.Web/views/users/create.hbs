@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Create</h2>
+  <form method="POST" action="/users/create" name="loginCreate">
+    <div class="form-horizontal">
+      <h4>Login</h4>
+      <hr />
+      <div class="form-group">
+        <label class="col-md-2 control-label">Email</label>
+        <div class="col-md-10">
+          <input name="email" class="form-control" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+      </div>
+    </div>
+  </form>
+  <div>
+    <a href="/users/index" class="btn btn-default col-md-offset-2">Back to List</a>
+  </div>
+</div>

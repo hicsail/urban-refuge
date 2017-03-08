@@ -19,7 +19,7 @@ let Resource = sequelize.define('resources', {
     type: Sequelize.STRING
   },
   types: {
-    type: Sequelize.STRING
+    type: Sequelize.JSON
   },
   address: {
     type: Sequelize.STRING

@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Logins</h2>
+  <hr />
+  <p>
+    <a href="/users/create" class="btn btn-primary">Create New</a>
+  </p>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>
+            {{this.dataValues.email}}
+          </td>
+          <td>
+            <div class="row">
+              <form class="col-md-2" method="POST" action="/users/delete">
+                <input hidden name="email" value="{{this.dataValues.email}}">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+              </form>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

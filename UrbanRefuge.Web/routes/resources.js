@@ -47,6 +47,12 @@ router.post('/create', ensureLoggedIn, function(req, res, next) {
   if(req.body == undefined){
     return res.redirect('/resources/create');
   } else {
+    if(req.body.latitude == ''){
+      req.body.latitude = 0;
+    }
+    if(req.body.longitude == ''){
+      req.body.longitude = 0;
+    }
     Resource.create(req.body).then(() => {
       return res.redirect('/resources/index');
     });

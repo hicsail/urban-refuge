@@ -1,16 +1,17 @@
-let express = require('express');
-let app = express();
-let passport = require('passport');
+var express = require('express');
+var app = express();
+var passport = require('passport');
 var WindowsLiveStrategy = require('passport-windowslive');
-let hbs = require('hbs');
-let session = require('express-session');
-let bodyParser = require('body-parser');
+var hbs = require('hbs');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-let config = require('./config/config');
+var config = require('./config/config');
 
 /* routes */
 var index = require('./routes/index');
-let resources = require('./routes/resources');
+var resources = require('./routes/resources');
+var users = require('./routes/users');
 
 /* initialize express */
 app.use(bodyParser.json());
@@ -60,6 +61,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 /* routes */
 app.use('/', index);
 app.use('/resources', resources);
+app.use('/users', users);
 
 app.listen(3000, function () {
   console.log('Urban Refuge is listening on port 3000');

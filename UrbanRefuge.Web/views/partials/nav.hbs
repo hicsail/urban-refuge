@@ -11,8 +11,12 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/resources/index">Home</a></li>
-        <li><a href="/resources/create">Add Resources</a></li>
+        {{#if user}}
+          <li><a href="/resources/index">Resources</a></li>
+          <li><a href="/users/index">Logins</a></li>
+          <li><a href="/resources/create">Add Resources</a></li>
+          <li><a href="/users/create">Add Login</a></li>
+        {{/if}}
       </ul>
       {{#if user}}
       <ul class="nav navbar-nav navbar-right">
