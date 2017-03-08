@@ -1,15 +1,15 @@
 let express = require('express');
 let app = express();
 let passport = require('passport');
-var Auth0Strategy = require('passport-auth0');
+var WindowsLiveStrategy = require('passport-windowslive');
 let hbs = require('hbs');
 let session = require('express-session');
-let flash = require('express-flash');
 let bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+let config = require('./config/config');
 
 /* routes */
-let home = require('./routes/home');
-let users = require('./routes/users');
+var index = require('./routes/index');
 let resources = require('./routes/resources');
 
 /* initialize express */
@@ -17,15 +17,37 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  secret: 'shhhhhhhhh',
+  resave: true,
+  saveUninitialized: true
 }));
-app.use(flash());
+app.use(cookieParser());
 
 /* initialize passport */
-let passportConf = require('./config/passport');
+
+// Configure Passport to use Auth0
+var strategy = new WindowsLiveStrategy({
+    clientID:     config.clientID,
+    clientSecret: config.clientSecret,
+    callbackURL:  config.callbackURL
+  }, function(accessToken, refreshToken, profile, done) {
+    // accessToken is the token to call Auth0 API (not needed in the most cases)
+    // extraParams.id_token has the JSON Web Token
+    // profile has all the information from the user
+    return done(null, profile);
+  });
+
+passport.use(strategy);
+
+// This can be used to keep a smaller payload
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,16 +58,8 @@ app.set('views', __dirname+'/views');
 hbs.registerPartials(__dirname + '/views/partials');
 
 /* routes */
-app.get('/', home.index);
-app.get('/login',users.getLogin);
-app.get('/resources/index', resources.getIndex);
-app.post('/resources/index', resources.postIndex);
-app.get('/resources/create', resources.getCreate);
-app.post('/resources/create', resources.postCreate);
-app.post('/resources/view', resources.postView);
-app.post('/resources/edit', resources.postEdit);
-app.post('/resources/update', resources.Edit);
-app.post('/resources/delete', resources.delete);
+app.use('/', index);
+app.use('/resources', resources);
 
 app.listen(3000, function () {
   console.log('Urban Refuge is listening on port 3000');

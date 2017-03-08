@@ -14,7 +14,16 @@
         <li><a href="/resources/index">Home</a></li>
         <li><a href="/resources/create">Add Resources</a></li>
       </ul>
-      <!-- login -->
+      {{#if user}}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a> Welcome {{user.displayName}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      {{else}}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/login">Login</a></li>
+      </ul>
+      {{/if}}
     </div>
   </div>
 </div>

@@ -14,5 +14,7 @@ let User = sequelize.define('users', {
 User.sync();
 
 module.exports = {
-	User: User
+	vaildUser: function(email) {
+    return User.findOne({where:{email:email}});
+  }
 };
