@@ -6,5 +6,6 @@ module.exports = {
   clientID:     process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   callbackURL:  process.env.AUTH0_CALLBACK_URL,
-  rootEmail:    process.env.ROOT_EMAIL
+  rootEmail:    process.env.ROOT_EMAIL,
+  port:         process.env.PORT
 };

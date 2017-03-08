@@ -63,6 +63,6 @@ app.use('/', index);
 app.use('/resources', resources);
 app.use('/users', users);
 
-app.listen(3000, function () {
-  console.log('Urban Refuge is listening on port 3000');
+app.listen(config.port, function () {
+  console.log('Urban Refuge is listening on port',config.port);
 });
