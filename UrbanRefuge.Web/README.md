@@ -22,6 +22,7 @@ AUTH0_CLIENT_ID=########-####-####-####-############
 AUTH0_CLIENT_SECRET=#######################
 AUTH0_CALLBACK_URL=http://www.example.com/auth/windowslive/callback
 ROOT_EMAIL=emailAddress@emailAddress.com
+PORT=3000
 ```
 
 ## Running
