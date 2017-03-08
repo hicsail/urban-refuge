@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UrbanRefuge.Web.Controllers
 {
-    [Authorize(ActiveAuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     public class ResourcesController : Controller
     {
