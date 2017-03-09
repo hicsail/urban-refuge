@@ -139,9 +139,12 @@ namespace UrbanRefuge.Web.Controllers
                     },
                 }).Entity;
 
-                foreach (var type in refugeResource.Types)
+                if (refugeResource.Types != null)
                 {
-                    _context.RefugeResourceResourceType.Add(new RefugeResourceResourceType() { RefugeResourceId = resource.ResourceId, ResourceTypeId = (int)type });
+                    foreach (var type in refugeResource.Types)
+                    {
+                        _context.RefugeResourceResourceType.Add(new RefugeResourceResourceType() { RefugeResourceId = resource.ResourceId, ResourceTypeId = (int)type });
+                    }
                 }
 
                 await _context.SaveChangesAsync();
