@@ -260,7 +260,7 @@ namespace UrbanRefuge.Web.Controllers
                 ModelState.AddModelError(string.Empty, "Please set a valid primary resource type.");
             }
 
-            if (refugeResource.Types.Contains(ResourceTypes.NotSet))
+            if (refugeResource.Types != null && refugeResource.Types.Contains(ResourceTypes.NotSet))
             {
                 ModelState.AddModelError(string.Empty, "Can have use Not Set as secondary type.");
             }
