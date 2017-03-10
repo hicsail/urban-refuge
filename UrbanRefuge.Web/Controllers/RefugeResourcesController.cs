@@ -221,6 +221,12 @@ namespace UrbanRefuge.Web.Controllers
 
                     var currentTypes = resource.ResourceTypes.Select(x => (ResourceTypes)x.ResourceTypeId).ToList();
 
+                    // Make sure we're not trying to enumerate over null
+                    if (refugeResource.Types == null)
+                    {
+                        refugeResource.Types = new List<ResourceTypes>();
+                    }
+
                     var typesNotSelected = currentTypes.Except(refugeResource.Types).ToList();
                     foreach (var resourceTypese in typesNotSelected)
                     {
