@@ -12,6 +12,7 @@ var config = require('./config/config');
 var index = require('./routes/index');
 var resources = require('./routes/resources');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 /* initialize express */
 app.use(bodyParser.json());
@@ -62,6 +63,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use('/', index);
 app.use('/resources', resources);
 app.use('/users', users);
+app.use('/api', api);
 
 app.listen(config.port, function () {
   console.log('Urban Refuge is listening on port',config.port);

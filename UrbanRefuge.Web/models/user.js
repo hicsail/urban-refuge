@@ -29,7 +29,7 @@ module.exports = {
     return User.findOne({where:{email:email}});
   },
   findAll: function() {
-    return User.findAll();
+    return User.findAll({order: 'email ASC'});
   },
   create: function(email) {
     return User.create(email);

@@ -19,7 +19,7 @@ let Resource = sequelize.define('resources', {
     type: Sequelize.STRING
   },
   types: {
-    type: Sequelize.JSON
+    type: Sequelize.JSONB
   },
   address: {
     type: Sequelize.STRING
@@ -44,8 +44,10 @@ let Resource = sequelize.define('resources', {
 Resource.sync();
 
 module.exports = {
-  findAll : function() { return Resource.findAll(); },
+  findAll : function() { return Resource.findAll({order: 'name ASC'}); },
   findById : function(id) { return Resource.find({where:{id:id}});},
+  findByType: function(type) { return Resource.findAll({where:{primaryType:type}});},
+  findByTypeSecondary: function(type) {return Resource.findAll({where:{types:{$contains: type}}});},
   create : function(resource) { return Resource.create(resource);},
   update : function (resource) { return Resource.update(resource, {where: {id: resource.resourceid}});},
   delete : function (id) { return Resource.destroy({where:{id:id}});},
