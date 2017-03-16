@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "urban-refuge",
+  "author": "Boston University Software & Application Innovation Lab",
+  "homepage": "http://www.urbanrefuge.org/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -33,19 +33,28 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
-    "cordova-plugin-statusbar",
     "cordova-plugin-console",
+    "cordova-plugin-statusbar",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+      "id": "com.googlemaps.ios"
+    },
+    "cordova-plugin-googlemaps"
   ],
   "cordovaPlatforms": [
-    "ios",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
     {
       "platform": "ios",
       "version": "",
       "locator": "ios"
     }
   ],
-  "description": "urban-refuge: An Ionic project"
+  "description": "Urban Refuge"
 }
