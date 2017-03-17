@@ -1,21 +1,28 @@
 <sebm-google-map class="sebm-google-map-container"
   [disableDefaultUI]="true"
-  [zoomControl]="false"
+  [zoomControl]="true"
+  [longitude]="center.lng"
+  [latitude]="center.lat"
+  [zoom]="14"
   >
 
   <sebm-google-map-marker
-      *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
+      *ngFor="let m of markers"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable"
+      [markerDraggable]="false"
       [iconUrl]="m.icon">
-
     <sebm-google-map-info-window>
-        <p>{{m.label}}</p>
     </sebm-google-map-info-window>
-
   </sebm-google-map-marker>
-
+  <sebm-google-map-marker *ngIf="trackCurrentLocation"
+      [latitude]="currentLocationMarker.lat"
+      [longitude]="currentLocationMarker.lng"
+      [markerDraggable]="false"
+      [iconUrl]="currentLocationMarker.icon">
+  </sebm-google-map-marker>
 </sebm-google-map>
+<ion-fab top right>
+    <button *ngIf="!trackCurrentLocation" (click)="recenterMap()" ion-fab mini><ion-icon name="md-locate"></ion-icon></button>
+    <button *ngIf="trackCurrentLocation" (click)="trackCurrentLocation = false" ion-fab mini><ion-icon color="secondary" name="md-locate"></ion-icon></button>
+</ion-fab>

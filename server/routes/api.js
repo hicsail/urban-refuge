@@ -8,7 +8,7 @@ router.get('/resource/:type', function(req, res, next) {
     response.primary = primary;
     Resource.findByTypeSecondary(req.params.type).then((secondary) => {
       response.secondary = secondary;
-      return res.send('<pre>' + JSON.stringify(response,undefined,2) + '</pre>');
+      return res.send(response);
     });
   });
 });

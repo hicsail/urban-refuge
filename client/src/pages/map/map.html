@@ -4,19 +4,22 @@
 </ion-header>
 
 <ion-content>
-  <google-map></google-map>
+  <google-map #map></google-map>
   <ion-footer class="background">
     <ion-slides pager>
       <ion-slide>
         <ion-row padding>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Education')" src="assets/images/education.png">
+            <img *ngIf="selectedResource != 'Education'" class="icon" (click)="getResource('Education')" src="assets/images/education.png">
+            <img *ngIf="selectedResource == 'Education'" class="icon" src="assets/images/education_selected.png">
           </ion-col>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Work')" src="assets/images/work.png">
+            <img *ngIf="selectedResource != 'Work'" class="icon" (click)="getResource('Work')" src="assets/images/work.png">
+            <img *ngIf="selectedResource == 'Work'" class="icon" src="assets/images/work_selected.png">
           </ion-col>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Housing')" src="assets/images/housing.png">
+            <img *ngIf="selectedResource != 'Housing'" class="icon" (click)="getResource('Housing')" src="assets/images/housing.png">
+            <img *ngIf="selectedResource == 'Housing'" class="icon" src="assets/images/housing_selected.png">
           </ion-col>
         </ion-row>
       </ion-slide>
@@ -24,13 +27,16 @@
       <ion-slide>
         <ion-row padding>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Cash')" src="assets/images/cash.png">
+            <img *ngIf="selectedResource != 'Cash'" class="icon" (click)="getResource('Cash')" src="assets/images/cash.png">
+            <img *ngIf="selectedResource == 'Cash'" class="icon" src="assets/images/cash_selected.png">
           </ion-col>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Health')" src="assets/images/health.png">
+            <img *ngIf="selectedResource != 'Health'" class="icon" (click)="getResource('Health')" src="assets/images/health.png">
+            <img *ngIf="selectedResource == 'Health'" class="icon" src="assets/images/health_selected.png">
           </ion-col>
           <ion-col col-4 padding>
-            <img class="icon" (click)="getResource('Other')" src="assets/images/other.png">
+            <img *ngIf="selectedResource != 'Other'" class="icon" (click)="getResource('Other')" src="assets/images/other.png">
+            <img *ngIf="selectedResource == 'Other'" class="icon" src="assets/images/other_selected.png">
           </ion-col>
         </ion-row>
       </ion-slide>
