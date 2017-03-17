@@ -1,0 +1,24 @@
+page-map {
+
+  .top {
+    margin-top: 10px;
+  }
+
+  .icon {
+    width: 75%;
+  }
+
+  ion-footer {
+    height: 20%;
+  }
+
+  .swiper-pagination-bullet {
+    background: #ffffff !important;
+    opacity: 0.5 !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #42C6A0 !important;
+    opacity: 1 !important;
+  }
+}

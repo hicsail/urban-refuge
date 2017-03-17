@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <google-map></google-map>
+  <ion-footer class="background">
+    <ion-slides pager>
+      <ion-slide>
+        <ion-row padding>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Education')" src="assets/images/education.png">
+          </ion-col>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Work')" src="assets/images/work.png">
+          </ion-col>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Housing')" src="assets/images/housing.png">
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-row padding>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Cash')" src="assets/images/cash.png">
+          </ion-col>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Health')" src="assets/images/health.png">
+          </ion-col>
+          <ion-col col-4 padding>
+            <img class="icon" (click)="getResource('Other')" src="assets/images/other.png">
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+    </ion-slides>
+  </ion-footer>
+</ion-content>

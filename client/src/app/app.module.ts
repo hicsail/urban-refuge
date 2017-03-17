@@ -1,24 +1,34 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
+import { MapPage} from '../pages/map/map';
+import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { GoogleMapComponent } from "../components/google-map/google-map";
+import { HttpService } from "../providers/http-service";
 
 @NgModule({
   declarations: [
     MyApp,
-    Page1,
-    Page2
+    MapPage,
+    ResourceSelectionPage,
+    GoogleMapComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDAYbh5oOwGUAMYAwzPcVdyMuFZlLZ0ffc'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
-    Page2
+    MapPage,
+    ResourceSelectionPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    HttpService
+  ]
 })
 export class AppModule {}

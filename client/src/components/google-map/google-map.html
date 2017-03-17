@@ -1,0 +1,21 @@
+<sebm-google-map class="sebm-google-map-container"
+  [disableDefaultUI]="true"
+  [zoomControl]="false"
+  >
+
+  <sebm-google-map-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      [iconUrl]="m.icon">
+
+    <sebm-google-map-info-window>
+        <p>{{m.label}}</p>
+    </sebm-google-map-info-window>
+
+  </sebm-google-map-marker>
+
+</sebm-google-map>
