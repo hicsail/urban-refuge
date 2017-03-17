@@ -23,6 +23,5 @@
   </sebm-google-map-marker>
 </sebm-google-map>
 <ion-fab top right>
-    <button *ngIf="!trackCurrentLocation" (click)="recenterMap()" ion-fab mini><ion-icon name="md-locate"></ion-icon></button>
-    <button *ngIf="trackCurrentLocation" (click)="trackCurrentLocation = false" ion-fab mini><ion-icon color="secondary" name="md-locate"></ion-icon></button>
+    <button *ngIf="trackCurrentLocation" (click)="recenterMap()" ion-fab mini><ion-icon color="secondary" name="md-locate"></ion-icon></button>
 </ion-fab>
