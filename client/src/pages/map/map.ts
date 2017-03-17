@@ -16,6 +16,10 @@ export class MapPage {
     this.selectedResource = navParams.data;
   }
 
+  ionViewDidLoad(){
+    this.getResource(this.selectedResource);
+  }
+
   getResource(resource){
     this.map.removeAllMarkers();
     this.selectedResource = resource;
