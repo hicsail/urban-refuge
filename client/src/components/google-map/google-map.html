@@ -1,6 +1,8 @@
 <sebm-google-map #googleMap class="sebm-google-map-container"
   [disableDefaultUI]="true"
   [zoomControl]="true"
+  [keyboardShortcuts]="false"
+  [streetViewControl]="false"
   [longitude]="center.lng"
   [latitude]="center.lat"
   [zoom]="14"
@@ -35,6 +37,7 @@
       [iconUrl]="currentLocationMarker.icon">
   </sebm-google-map-marker>
 </sebm-google-map>
-<ion-fab top right *ngIf="trackCurrentLocation">
-  <button (click)="recenterMap()" ion-fab><ion-icon color="secondary" name="md-locate"></ion-icon></button>
+<ion-fab top right>
+  <button *ngIf="trackCurrentLocation" (click)="recenterMap()" ion-fab><ion-icon color="secondary" name="md-locate"></ion-icon></button>
+  <button *ngIf="!trackCurrentLocation" ion-fab><ion-spinner></ion-spinner></button>
 </ion-fab>

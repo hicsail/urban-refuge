@@ -71,5 +71,4 @@ import { SebmGoogleMap } from "angular2-google-maps/core";
     centerChange(latLng){
       this.center = latLng;
     }
-
   }
