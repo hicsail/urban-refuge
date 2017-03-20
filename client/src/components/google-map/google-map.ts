@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { Geolocation } from 'ionic-native';
 import { NavController } from 'ionic-angular';
 import { ViewResourcePage } from '../../pages/view-resource/view-resource';
+import { SebmGoogleMap } from "angular2-google-maps/core";
 
   interface Marker {
     lat: number;
@@ -17,16 +18,18 @@ import { ViewResourcePage } from '../../pages/view-resource/view-resource';
   })
   export class GoogleMapComponent {
 
+    @ViewChild('googleMap') map:SebmGoogleMap;
     public markers:Array<Marker> = [];
     public center = {lat: 31.8354533, lng: 35.6674418}; //defualt location
     public currentLocationMarker = {lat: 31.8354533, lng: 35.6674418,
       icon: 'assets/images/location.svg'}; //defualt location
-    public trackCurrentLocation = true;
+    public trackCurrentLocation = false;
 
     constructor(private nav:NavController) {
-      this.recenterMap();
+      this.getLocation();
       let watch = Geolocation.watchPosition();
         watch.subscribe((resp) => {
+          this.trackCurrentLocation = true;
           this.currentLocationMarker.lat = resp.coords.latitude;
           this.currentLocationMarker.lng = resp.coords.longitude;
        });
@@ -34,8 +37,13 @@ import { ViewResourcePage } from '../../pages/view-resource/view-resource';
 
     private getLocation() {
       Geolocation.getCurrentPosition().then((resp) => {
+          this.trackCurrentLocation = true;
           this.currentLocationMarker.lat = resp.coords.latitude;
           this.currentLocationMarker.lng = resp.coords.longitude;
+          this.center = {
+            lat: this.currentLocationMarker.lat,
+            lng: this.currentLocationMarker.lng
+          };
       }).catch((error) => {
         this.trackCurrentLocation = false;
       });
@@ -58,6 +66,10 @@ import { ViewResourcePage } from '../../pages/view-resource/view-resource';
 
     public openResource(resource){
       this.nav.push(ViewResourcePage,resource);
+    }
+
+    centerChange(latLng){
+      this.center = latLng;
     }
 
   }

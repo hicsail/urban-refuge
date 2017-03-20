@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, Slides } from 'ionic-angular';
 import { GoogleMapComponent } from "../../components/google-map/google-map";
 import { HttpService } from "../../providers/http-service";
 
@@ -9,6 +9,7 @@ import { HttpService } from "../../providers/http-service";
 })
 export class MapPage {
 
+  @ViewChild('slider') slider:Slides;
   @ViewChild('map') map:GoogleMapComponent;
   public selectedResource = "";
 
@@ -18,6 +19,12 @@ export class MapPage {
 
   ionViewDidLoad(){
     this.getResource(this.selectedResource);
+  }
+
+  ionViewDidEnter(){
+    if(this.selectedResource == 'Cash' || this.selectedResource == 'Health' || this.selectedResource == 'Other'){
+      this.slider.slideNext();
+    }
   }
 
   getResource(resource){
@@ -31,6 +38,7 @@ export class MapPage {
             lat: marker.latitude,
             lng: marker.longitude,
             info: marker,
+            icon: this.getImageURL(marker.primaryType),
             draggable: false
           });
         }
@@ -39,11 +47,16 @@ export class MapPage {
             lat: marker.latitude,
             lng: marker.longitude,
             info: marker,
+            icon: this.getImageURL(marker.primaryType),
             draggable: false
           });
         }
         this.map.addMarkers(markers);
       }
     );
+  }
+
+  private getImageURL(type){
+    return "assets/map/" + type.toLowerCase() + ".png";
   }
 }
