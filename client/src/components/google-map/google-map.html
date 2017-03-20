@@ -13,6 +13,17 @@
       [markerDraggable]="false"
       [iconUrl]="m.icon">
     <sebm-google-map-info-window>
+      <ion-grid>
+        <ion-row>
+          {{m.info.name}}
+        </ion-row>
+        <ion-row>
+          <div class="right">{{m.info.ariabicName}}</div>
+        </ion-row>
+        <ion-row>
+          <button ion-button small (click)="openResource(m.info)">Learn More</button>
+        </ion-row>
+      </ion-grid>
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
   <sebm-google-map-marker *ngIf="trackCurrentLocation"
@@ -22,6 +33,6 @@
       [iconUrl]="currentLocationMarker.icon">
   </sebm-google-map-marker>
 </sebm-google-map>
-<ion-fab top right>
+<ion-fab top right padding>
     <button *ngIf="trackCurrentLocation" (click)="recenterMap()" ion-fab mini><ion-icon color="secondary" name="md-locate"></ion-icon></button>
 </ion-fab>

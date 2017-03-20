@@ -30,6 +30,7 @@ export class MapPage {
           markers.push({
             lat: marker.latitude,
             lng: marker.longitude,
+            info: marker,
             draggable: false
           });
         }
@@ -37,6 +38,7 @@ export class MapPage {
           markers.push({
             lat: marker.latitude,
             lng: marker.longitude,
+            info: marker,
             draggable: false
           });
         }

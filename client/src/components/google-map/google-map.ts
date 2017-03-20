@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Geolocation } from 'ionic-native';
+import { NavController } from 'ionic-angular';
+import { ViewResourcePage } from '../../pages/view-resource/view-resource';
 
   interface Marker {
     lat: number;
@@ -16,12 +18,12 @@ import { Geolocation } from 'ionic-native';
   export class GoogleMapComponent {
 
     public markers:Array<Marker> = [];
-    public center = {lat: 31.8354533, lng: 35.6674418};
+    public center = {lat: 31.8354533, lng: 35.6674418}; //defualt location
     public currentLocationMarker = {lat: 31.8354533, lng: 35.6674418,
-      icon: 'assets/images/location.svg'};
+      icon: 'assets/images/location.svg'}; //defualt location
     public trackCurrentLocation = true;
 
-    constructor() {
+    constructor(private nav:NavController) {
       this.recenterMap();
       let watch = Geolocation.watchPosition();
         watch.subscribe((resp) => {
@@ -40,8 +42,10 @@ import { Geolocation } from 'ionic-native';
     }
 
     public recenterMap() {
-      this.center.lat = this.currentLocationMarker.lat;
-      this.center.lng = this.currentLocationMarker.lng;
+      this.center = {
+        lat: this.currentLocationMarker.lat,
+        lng: this.currentLocationMarker.lng
+      };
     }
 
     public removeAllMarkers() {
@@ -50,6 +54,10 @@ import { Geolocation } from 'ionic-native';
 
     public addMarkers(markers:Array<Marker>) {
       this.markers = this.markers.concat(markers);
+    }
+
+    public openResource(resource){
+      this.nav.push(ViewResourcePage,resource);
     }
 
   }

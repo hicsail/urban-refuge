@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { MapPage} from '../pages/map/map';
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
+import { ViewResourcePage } from '../pages/view-resource/view-resource';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { GoogleMapComponent } from "../components/google-map/google-map";
 import { HttpService } from "../providers/http-service";
@@ -12,7 +13,8 @@ import { HttpService } from "../providers/http-service";
     MyApp,
     MapPage,
     ResourceSelectionPage,
-    GoogleMapComponent
+    GoogleMapComponent,
+    ViewResourcePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -24,7 +26,8 @@ import { HttpService } from "../providers/http-service";
   entryComponents: [
     MyApp,
     MapPage,
-    ResourceSelectionPage
+    ResourceSelectionPage,
+    ViewResourcePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -1,0 +1,32 @@
+page-view-resource {
+  ion-content {
+    color: white !important;
+  }
+
+  ion-item {
+    color: white !important;
+  }
+
+  .mainIcon {
+    width: 35%;
+    height: 35%;
+    border: 2px;
+    border-style: solid;
+    border-radius: 100%;
+    margin: 0 auto;
+  }
+
+  .secondIcons {
+    width: 50%;
+    height: auto;
+    border: 2px;
+    border-style: solid;
+    border-radius: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  ion-icon {
+    font-size: 3em;
+  }
+}
