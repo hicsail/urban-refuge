@@ -11,9 +11,6 @@ export class ViewResourcePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.resource = navParams.data;
-    if(this.resource.types instanceof String){
-      this.resource.types = [].push(this.resource.types);
-    }
   }
 
   public getImageURL(type){

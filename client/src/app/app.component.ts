@@ -17,12 +17,6 @@ export class MyApp {
 
   constructor(public platform: Platform) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Map', component: MapPage }
-    ];
-
   }
 
   initializeApp() {
@@ -32,11 +26,5 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
-  }
-
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
   }
 }

@@ -53,6 +53,13 @@ router.post('/create', ensureLoggedIn, function(req, res, next) {
     if(req.body.longitude == ''){
       req.body.longitude = 0;
     }
+    if(!(req.body.types instanceof Array)){
+      if(req.body.types == 'null'){
+        req.body.types = [];
+      } else {
+        req.body.types = [].concat(req.body.types);
+      }
+    }
     Resource.create(req.body).then(() => {
       return res.redirect('/resources/index');
     });
@@ -108,6 +115,13 @@ router.post('/update', ensureLoggedIn, function(req, res, next) {
   if(req.body == undefined){
     return res.redirect('/resources/edit');
   } else {
+    if(!(req.body.types instanceof Array)){
+      if(req.body.types == 'null'){
+        req.body.types = [];
+      } else {
+        req.body.types = [].concat(req.body.types);
+      }
+    }
     Resource.update(req.body).then(() => {
       return res.redirect('/resources/index');
     });
