@@ -16,4 +16,12 @@ export class ViewResourcePage {
   public getImageURL(type){
     return "assets/images/" + type.toLowerCase() + ".png";
   }
+
+  public call() {
+
+  }
+
+  public text() {
+
+  }
 }
