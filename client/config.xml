@@ -86,5 +86,6 @@
   <plugin name="cordova-plugin-device" spec="1.1.4"/>
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
   <plugin name="cordova-plugin-geolocation" spec="~2.4.2"/>
+  <plugin name="cordova-plugin-inappbrowser" spec="~1.7.0"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>

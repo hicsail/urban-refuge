@@ -72,6 +72,7 @@ router.post('/view', ensureLoggedIn, function(req, res, next) {
   } else {
     Resource.findById(req.body.resource).then((resource) => {
       if(resource.dataValues) {
+        resource.dataValues.types = resource.dataValues.types.join(', ');
         res.render('resources/view.hbs', {
             title: 'View Resources',
             resource: resource.dataValues,
@@ -88,6 +89,7 @@ router.post('/edit', ensureLoggedIn, function(req, res, next) {
   } else {
     Resource.findById(req.body.resource).then((resource) => {
       if(resource.dataValues) {
+        resource.dataValues.types = resource.dataValues.types.join(', ');
         Type.findAll().then((types)=>{
           res.render('resources/edit.hbs', {
               title: 'Edit Resources',

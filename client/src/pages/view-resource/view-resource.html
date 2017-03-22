@@ -26,7 +26,7 @@
       <h6>{{resource.ariabicAddress}}</h6>
       <ion-icon name="pin" item-right></ion-icon>
     </ion-item>
-    <ion-item class="background">
+    <ion-item class="background" *ngIf="resource.phone">
       <ion-icon (click)="call()" color="primary" name="call" item-left></ion-icon>
       <ion-label class="center">{{resource.phone}}</ion-label>
       <ion-icon (click)="text()" color="primary" name="text" item-right></ion-icon>

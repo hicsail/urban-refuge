@@ -71,6 +71,15 @@ app.use(passport.session());
 app.set('view engine', 'hbs');
 app.set('views', __dirname+'/views');
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('neq', function(lvalue, rvalue, options) {
+  if (arguments.length < 3)
+    throw new Error("Handlebars Helper equal needs 2 parameters");
+  if(lvalue==rvalue) {
+    return options.inverse(this);
+  } else {
+    return options.fn(this);
+  }
+});
 
 /* routes */
 app.use('/', index);
