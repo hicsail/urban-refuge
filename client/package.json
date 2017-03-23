@@ -32,17 +32,12 @@
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
+    "ionic-plugin-keyboard",
     "cordova-plugin-whitelist",
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard",
-    {
-      "locator": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
-      "id": "com.googlemaps.ios"
-    },
-    "cordova-plugin-googlemaps"
+    "cordova-plugin-splashscreen"
   ],
   "cordovaPlatforms": [
     {
