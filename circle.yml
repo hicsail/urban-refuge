@@ -9,4 +9,4 @@ deployment:
   production:
     branch: deployment
     commands:
-      - ./deploy.sh
+      - deploy.sh
