@@ -1,0 +1,43 @@
+<sebm-google-map #googleMap class="sebm-google-map-container"
+  [disableDefaultUI]="true"
+  [zoomControl]="true"
+  [keyboardShortcuts]="false"
+  [streetViewControl]="false"
+  [longitude]="center.lng"
+  [latitude]="center.lat"
+  [zoom]="14"
+  [usePanning]="true"
+  (centerChange)="centerChange($event)"
+  >
+
+  <sebm-google-map-marker
+      *ngFor="let m of markers"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [markerDraggable]="false"
+      [iconUrl]="m.icon">
+    <sebm-google-map-info-window>
+      <ion-grid>
+        <ion-row>
+          {{m.info.name}}
+        </ion-row>
+        <ion-row>
+          <div class="right">{{m.info.ariabicName}}</div>
+        </ion-row>
+        <ion-row>
+          <button ion-button small (click)="openResource(m.info)">Learn More</button>
+        </ion-row>
+      </ion-grid>
+    </sebm-google-map-info-window>
+  </sebm-google-map-marker>
+  <sebm-google-map-marker *ngIf="trackCurrentLocation"
+      [latitude]="currentLocationMarker.lat"
+      [longitude]="currentLocationMarker.lng"
+      [markerDraggable]="false"
+      [iconUrl]="currentLocationMarker.icon">
+  </sebm-google-map-marker>
+</sebm-google-map>
+<ion-fab top right>
+  <button *ngIf="trackCurrentLocation" (click)="recenterMap()" ion-fab><ion-icon color="secondary" name="md-locate"></ion-icon></button>
+  <button *ngIf="!trackCurrentLocation" ion-fab><ion-spinner></ion-spinner></button>
+</ion-fab>

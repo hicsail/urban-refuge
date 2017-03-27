@@ -1,0 +1,40 @@
+page-view-resource {
+  ion-content {
+    color: white !important;
+  }
+
+  ion-item {
+    color: white !important;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .mainIcon {
+    width: 35%;
+    height: 35%;
+    border: 2px;
+    border-style: solid;
+    border-radius: 100%;
+    margin: 0 auto;
+  }
+
+  .secondIcons {
+    max-width: 50px;
+    height: auto;
+    border: 2px;
+    border-style: solid;
+    border-radius: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  ion-icon {
+    font-size: 3em;
+  }
+}

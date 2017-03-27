@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="background">
+  <h5>{{resource.name}}</h5>
+  <h5 class="right">{{resource.ariabicName}}</h5>
+  <ion-grid>
+    <ion-row>
+      <img class="mainIcon" src="{{getImageURL(resource.primaryType)}}">
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let r of resource.types">
+        <img *ngIf="r" class="secondIcons" src="{{getImageURL(r)}}">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list no-lines>
+    <ion-item *ngIf="resource.address" class="background">
+      <ion-icon name="pin" item-left></ion-icon>
+      <h6>{{resource.address}}</h6>
+    </ion-item>
+    <ion-item *ngIf="resource.ariabicAddress" class="right background">
+      <h6>{{resource.ariabicAddress}}</h6>
+      <ion-icon name="pin" item-right></ion-icon>
+    </ion-item>
+    <ion-item class="background" *ngIf="resource.phone">
+      <ion-icon (click)="call()" color="primary" name="call" item-left></ion-icon>
+      <ion-label class="center">{{resource.phone}}</ion-label>
+      <ion-icon (click)="text()" color="primary" name="text" item-right></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="resource.notes" class="background">
+      <ion-icon name="ios-paper-outline" item-left></ion-icon>
+      <h6>{{resource.notes}}</h6>
+    </ion-item>
+    <ion-item *ngIf="resource.ariabicNotes" class="right background">
+      <h6>{{resource.ariabicNotes}}</h6>
+      <ion-icon name="ios-paper-outline" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

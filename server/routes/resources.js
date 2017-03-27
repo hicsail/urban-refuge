@@ -53,6 +53,13 @@ router.post('/create', ensureLoggedIn, function(req, res, next) {
     if(req.body.longitude == ''){
       req.body.longitude = 0;
     }
+    if(!(req.body.types instanceof Array)){
+      if(req.body.types == 'null'){
+        req.body.types = [];
+      } else {
+        req.body.types = [].concat(req.body.types);
+      }
+    }
     Resource.create(req.body).then(() => {
       return res.redirect('/resources/index');
     });
@@ -65,6 +72,7 @@ router.post('/view', ensureLoggedIn, function(req, res, next) {
   } else {
     Resource.findById(req.body.resource).then((resource) => {
       if(resource.dataValues) {
+        resource.dataValues.types = resource.dataValues.types.join(', ');
         res.render('resources/view.hbs', {
             title: 'View Resources',
             resource: resource.dataValues,
@@ -81,6 +89,7 @@ router.post('/edit', ensureLoggedIn, function(req, res, next) {
   } else {
     Resource.findById(req.body.resource).then((resource) => {
       if(resource.dataValues) {
+        resource.dataValues.types = resource.dataValues.types.join(', ');
         Type.findAll().then((types)=>{
           res.render('resources/edit.hbs', {
               title: 'Edit Resources',
@@ -108,6 +117,13 @@ router.post('/update', ensureLoggedIn, function(req, res, next) {
   if(req.body == undefined){
     return res.redirect('/resources/edit');
   } else {
+    if(!(req.body.types instanceof Array)){
+      if(req.body.types == 'null'){
+        req.body.types = [];
+      } else {
+        req.body.types = [].concat(req.body.types);
+      }
+    }
     Resource.update(req.body).then(() => {
       return res.redirect('/resources/index');
     });

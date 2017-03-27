@@ -49,7 +49,9 @@
         <div class="col-md-10">
           <select multiple name="types" id="types" class="form-control">
             {{#each types}}
-            <option>{{this.dataValues.name}}</option>
+              {{#neq this.dataValues.name ../resource.primaryType}}
+                <option>{{this.dataValues.name}}</option>
+              {{/neq}}
             {{/each}}
           </select>
         </div>
@@ -102,7 +104,6 @@
   </div>
 </div>
 <script>
-  console.log("{{resource.types}}".split(", "))
   $("#primaryType").val("{{resource.primaryType}}");
   $("#types").val("{{resource.types}}".split(", "));
 </script>

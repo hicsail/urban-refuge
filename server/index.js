@@ -25,7 +25,20 @@ app.use(session({
 }));
 app.use(cookieParser());
 
-/* initialize passport */
+/* Add headers */
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    // Pass to next layer of middleware
+    next();
+});
 
 // Configure Passport to use Auth0
 var strategy = new WindowsLiveStrategy({
@@ -58,6 +71,15 @@ app.use(passport.session());
 app.set('view engine', 'hbs');
 app.set('views', __dirname+'/views');
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('neq', function(lvalue, rvalue, options) {
+  if (arguments.length < 3)
+    throw new Error("Handlebars Helper equal needs 2 parameters");
+  if(lvalue==rvalue) {
+    return options.inverse(this);
+  } else {
+    return options.fn(this);
+  }
+});
 
 /* routes */
 app.use('/', index);

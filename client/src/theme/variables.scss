@@ -24,12 +24,30 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
+  primary:    #42C6A0,
+  secondary:  #0F144C,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
 );
+
+$spinner-ios-ios-color:	#0F144C;
+$spinner-ios-bubbles-color:	#0F144C;
+$spinner-ios-circles-color:	#0F144C;
+$spinner-ios-crescent-color:	#0F144C;
+$spinner-ios-dots-color:	#0F144C;
+
+$spinner-md-ios-color:	#0F144C;
+$spinner-md-bubbles-color:	#0F144C;
+$spinner-md-circles-color:	#0F144C;
+$spinner-md-crescent-color:	#0F144C;
+$spinner-md-dots-color:	#0F144C;
+
+$spinner-wp-ios-color:	#0F144C;
+$spinner-wp-bubbles-color:	#0F144C;
+$spinner-wp-circles-color:	#0F144C;
+$spinner-wp-crescent-color:	#0F144C;
+$spinner-wp-dots-color:	#0F144C;
 
 
 // App iOS Variables
