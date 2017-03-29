@@ -11,6 +11,7 @@ deployment:
     commands:
       - cd client
       - npm install -g cordova ionic
+      - ionic start urban-refuge --v2
       - npm install
       - ionic state restore
       - ionic serve
