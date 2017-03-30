@@ -11,5 +11,5 @@ deployment:
     commands:
       - npm install -g cordova ionic
       - cd client && npm install
-      - ionic state restore
-      - ionic serve
+      - cd client && ionic state restore
+      - cs client && ionic serve
