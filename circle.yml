@@ -9,9 +9,7 @@ deployment:
   production:
     branch: deployment
     commands:
-      - cd client
       - npm install -g cordova ionic
-      - ionic start urban-refuge --v2
-      - npm install
+      - cd client && npm install
       - ionic state restore
       - ionic serve
