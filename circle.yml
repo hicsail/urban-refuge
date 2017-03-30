@@ -10,8 +10,6 @@ deployment:
     branch: deployment
     commands:
       - npm install -g cordova ionic
-      - cd client
       - cd client && npm install
       - cd client && ionic state restore
-      - cd client && ionic serve
       - cd client && ionic build android --prod
