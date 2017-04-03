@@ -19,5 +19,5 @@ deployment:
                        -F "notes=Some new features and fixed bugs." \
                        -F "notes_type=0" \
                        -F "ipa=@./platforms/android/build/outputs/apk/android-debug.apk" \
-                       -H "X-HockeyAppToken: 12f44882ca894c968e7fcdcf553adb93" \
+                       $variable \
                        https://rink.hockeyapp.net/api/2/apps/673c4da2dda442c3b81568b9d2c114dd/app_versions/upload
