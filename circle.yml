@@ -3,6 +3,8 @@ machine:
     version: 6.10.1
   java:
     version: oraclejdk8
+  dpkg -l:
+
 
 
 deployment:
@@ -20,4 +22,4 @@ deployment:
                        -F "notes_type=0" \
                        -F "ipa=@./platforms/android/build/outputs/apk/android-debug.apk" \
                        $variable \
-                       https://rink.hockeyapp.net/api/2/apps/673c4da2dda442c3b81568b9d2c114dd/app_versions/upload
+                       "https://rink.hockeyapp.net/api/2/apps/673c4da2dda442c3b81568b9d2c114dd/app_versions/upload"
