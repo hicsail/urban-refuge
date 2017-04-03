@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-cd client
-brew upgrade
-npm install -g cordova ionic
-npm install
-ionic state restore
+npm install \
+&& ionic state restore \
+&& ionic build android -- prod \
