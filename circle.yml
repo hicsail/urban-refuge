@@ -3,8 +3,6 @@ machine:
     version: 6.10.1
   java:
     version: oraclejdk8
-  dpkg -l:
-
 
 deployment:
   production:
