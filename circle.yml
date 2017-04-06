@@ -4,6 +4,11 @@ machine:
   java:
     version: oraclejdk8
 
+dependencies:
+  pre:
+    - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+    - brew install curl
+
 deployment:
   production:
     branch: deployment
