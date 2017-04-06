@@ -6,8 +6,9 @@ machine:
 
 dependencies:
   pre:
-    - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
-    - brew install curl
+    - sudo sed -i -e 's/us.archive.ubuntu.com/archive.ubuntu.com/g' /etc/apt/sources.list
+    - sudo apt-get update
+    - sudo apt-get install curl
 
 deployment:
   production:
