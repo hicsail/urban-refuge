@@ -19,7 +19,6 @@ deployment:
       - cd client && npm install
       - cd client && ionic state restore
       - cd client && ionic build android --prod
-      - ./configure --with-ssl
       - cd client && curl \
                       -F "status=2" \
                       -F "notify=0" \
