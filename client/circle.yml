@@ -5,9 +5,6 @@ machine:
     version: oraclejdk8
   dpkg -l:
 
-dependencies:
-  pre:
-    ssl_verify_mode: none
 
 deployment:
   production:
