@@ -1,0 +1,25 @@
+machine:
+  node:
+    version: 6.10.1
+  java:
+    version: oraclejdk8
+  dpkg -l:
+
+dependencies:
+  pre:
+    ssl_verify_mode: none
+
+deployment:
+  production:
+    branch: deployment
+    commands:
+      - npm install -g cordova ionic
+      - cd client && npm install
+      - cd client && ionic state restore
+      - cd client && ionic build android --prod
+      - cd client && curl \
+                      -F "status=2" \
+                      -F "notify=0" \
+                      -F "ipa=@./platforms/android/build/outputs/apk/android-debug.apk" \
+                      $variable \
+                      https://rink.hockeyapp.net/api/2/apps/673c4da2dda442c3b81568b9d2c114dd/app_versions/upload
