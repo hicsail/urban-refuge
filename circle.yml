@@ -18,7 +18,7 @@ deployment:
       - cd client && npm install
       - cd client && ionic state restore
       - cd client && ionic build android --prod
-      - sudo apt-get build-dep curl
+      - apt-get build-dep curl
       - buildconf
       - ./configure
       - make
