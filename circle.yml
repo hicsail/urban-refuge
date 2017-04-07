@@ -8,7 +8,7 @@ dependencies:
   pre:
     - sudo sed -i -e 's/us.archive.ubuntu.com/archive.ubuntu.com/g' /etc/apt/sources.list
     - sudo apt-get update
-    - sudo apt-get install openssl curl libcurl
+    - sudo apt-get install openssl curl libcurl3
 
 deployment:
   production:
