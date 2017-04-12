@@ -19,4 +19,4 @@ deployment:
       - cd client && ionic state restore
       - cd client && ionic build android --prod
       - cd client && chmod +x ./deploy.sh &&./deploy.sh
-      - ionic build
+      - cd client && ionic build
