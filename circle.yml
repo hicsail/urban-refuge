@@ -14,6 +14,7 @@ deployment:
   production:
     branch: deployment
     commands:
+      - which curl
       - cd curl-7.53.1 && ./configure --with-ssl && make && sudo make install
       - npm install -g cordova ionic
       - cd client && npm install
