@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { MapPage } from '../pages/map/map';
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
+import { HockeyApp } from "../providers/hockey-app";
 
 
 @Component({
@@ -15,7 +15,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform,private hockeyApp:HockeyApp) {
     this.initializeApp();
   }
 
@@ -25,6 +25,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      this.hockeyApp.start();
+      this.hockeyApp.trackEvent("APP_OPEN");
     });
   }
 }

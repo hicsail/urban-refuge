@@ -7,6 +7,7 @@ import { ViewResourcePage } from '../pages/view-resource/view-resource';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { GoogleMapComponent } from "../components/google-map/google-map";
 import { HttpService } from "../providers/http-service";
+import { HockeyApp } from "../providers/hockey-app";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpService } from "../providers/http-service";
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpService
+    HttpService,
+    HockeyApp
   ]
 })
 export class AppModule {}

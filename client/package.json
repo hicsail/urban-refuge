@@ -40,7 +40,8 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-hockeyapp"
   ],
   "cordovaPlatforms": [
     {

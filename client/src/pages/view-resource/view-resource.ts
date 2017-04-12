@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { InAppBrowser } from 'ionic-native';
+import {HockeyApp} from "../../providers/hockey-app";
 
 @Component({
   selector: 'page-view-resource',
@@ -10,7 +11,7 @@ export class ViewResourcePage {
 
   public resource;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, private hockeyApp:HockeyApp) {
     this.resource = navParams.data;
   }
 
@@ -29,6 +30,8 @@ export class ViewResourcePage {
         {
           text: 'Call مكالمة',
           handler: () => {
+            this.hockeyApp.trackEvent("CALL_RESOURCE");
+            this.hockeyApp.trackEvent("CALL_RESOURCE: " + this.resource.name);
             new InAppBrowser("tel://"+this.resource.phone,'_system');
           }
         }
@@ -37,6 +40,8 @@ export class ViewResourcePage {
   }
 
   public text() {
+    this.hockeyApp.trackEvent("TEXT_RESOURCE");
+    this.hockeyApp.trackEvent("TEXT_RESOURCE: " + this.resource.name);
     new InAppBrowser("sms://"+this.resource.phone,'_system');
   }
 }

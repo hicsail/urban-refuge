@@ -15,6 +15,7 @@
       [latitude]="m.lat"
       [longitude]="m.lng"
       [markerDraggable]="false"
+      (markerClick)="trackMarker(m.info)"
       [iconUrl]="m.icon">
     <sebm-google-map-info-window>
       <ion-grid>

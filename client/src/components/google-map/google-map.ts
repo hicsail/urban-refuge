@@ -3,6 +3,7 @@ import { Geolocation } from 'ionic-native';
 import { NavController } from 'ionic-angular';
 import { ViewResourcePage } from '../../pages/view-resource/view-resource';
 import { SebmGoogleMap } from "angular2-google-maps/core";
+import {HockeyApp} from "../../providers/hockey-app";
 
   interface Marker {
     lat: number;
@@ -25,7 +26,7 @@ import { SebmGoogleMap } from "angular2-google-maps/core";
       icon: 'assets/images/location.svg'}; //defualt location
     public trackCurrentLocation = false;
 
-    constructor(private nav:NavController) {
+    constructor(private nav:NavController, private hockeyApp:HockeyApp) {
       this.getLocation();
       let watch = Geolocation.watchPosition();
         watch.subscribe((resp) => {
@@ -65,10 +66,14 @@ import { SebmGoogleMap } from "angular2-google-maps/core";
     }
 
     public openResource(resource){
+      this.hockeyApp.trackEvent("VIEW_RESOURCE: " + resource.name);
       this.nav.push(ViewResourcePage,resource);
     }
 
-    centerChange(latLng){
+    public trackMarker(resource) {
+      this.hockeyApp.trackEvent("MARKER_CLICKED: " + resource.name);
+    }
+    public centerChange(latLng){
       this.center = latLng;
     }
   }
