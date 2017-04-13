@@ -27,6 +27,7 @@ export class MyApp {
       Splashscreen.hide();
       this.hockeyApp.start();
       this.hockeyApp.trackEvent("APP_OPEN");
+      this.hockeyApp.checkHockeyAppUpdates();
     });
   }
 }

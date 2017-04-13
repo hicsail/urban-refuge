@@ -38,9 +38,7 @@ export class HockeyApp {
 
   public checkHockeyAppUpdates(): void {
     if (window['hockeyapp']) {
-      window['hockeyapp'].start(() => {
-        window['hockeyapp'].checkForUpdate(null,(error)=>{console.log(error)});
-      }, null, this.appId);
+      window['hockeyapp'].checkForUpdate(null,null);
     }
   }
 
