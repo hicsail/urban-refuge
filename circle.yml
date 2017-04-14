@@ -7,13 +7,12 @@ machine:
 deployment:
   production:
     branch: deployment
-    commands:
-      - npm install -g cordova ionic
-      - cd client && npm install
-      - cd client && ionic state restore
-      - cd client && ionic build android --prod
-      - chmod +x ./android_deploy.sh &&./android_deploy.sh
+      commands:
+        - chmod +x ./android_deploy.sh &&./android_deploy.sh
 
 test:
   override:
-    - cd client && ionic build
+        - npm install -g cordova ionic
+        - cd client && npm install
+        - cd client && ionic state restore
+        - cd client && ionic build android --prod
