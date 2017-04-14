@@ -4,6 +4,10 @@ machine:
   java:
     version: oraclejdk8
 
+test:
+  override:
+    - ionic build
+
 deployment:
   production:
     branch: deployment
