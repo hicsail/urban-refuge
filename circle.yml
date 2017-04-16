@@ -1,4 +1,6 @@
 machine:
+  xcode:
+    version: 8.2
   node:
     version: 6.10.1
   java:
@@ -9,6 +11,7 @@ test:
     - npm install -g cordova ionic
     - cd client && npm install
     - cd client && ionic build android
+    - cd client && ionic build ios
 
 deployment:
   production:
@@ -18,4 +21,7 @@ deployment:
       - cd client && npm install
       - cd client && ionic state restore
       - cd client && ionic build android --prod
-      - chmod +x ./android_deploy.sh &&./android_deploy.sh
+      - chmod +x ./android_deploy.sh && ./android_deploy.sh
+      - cd cleint && ionic build ios
+      - chmod +x ./ios_deploy.sh && ./ios_deploy.sh
+
