@@ -23,5 +23,7 @@ deployment:
       - cd client && ionic build android --prod
       - chmod +x ./android_deploy.sh && ./android_deploy.sh
       - cd cleint && ionic build ios
+      - cd ./client/platforms/ios/build/emulator && if [ -f Urban\ Refuge.app.dSYM.zip ]; then rm -Rf Urban\ Refuge.app.dSYM.zip; fi
+      - cd ./client/platforms/ios/build/emulator && zip Urban\ Refuge.app.dSYM.zip Urban\ Refuge.app.dSYM
       - chmod +x ./ios_deploy.sh && ./ios_deploy.sh
 
