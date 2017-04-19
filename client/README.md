@@ -11,6 +11,6 @@ ionic serve || ionic run ios|android || ionic emulate ios|android
 
 ## Feature list
 - Android mobile app used to find aid based on GPS locations.
-- Receives verified aid locations with filters from Urban Refuge Backend.
+- Receives verified aid locations with filters from Urban Refuge backend server.
 - Able to view each aid location, description, and call them for more information.
-- 
+- All text is available in English and in Arabic.
