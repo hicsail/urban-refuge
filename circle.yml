@@ -12,7 +12,7 @@ test:
 
 deployment:
   production:
-    branch: deployment
+    branch: master
     commands:
       - npm install -g cordova ionic
       - cd client && npm install
