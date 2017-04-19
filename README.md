@@ -1,7 +1,7 @@
 # Urban Refuge
 Mobile app to locate non-governmental organizations and service providers for non-camp, urban refugees living in Amman, Jordan.
 
-[![CircleCI](https://circleci.com/gh/hicsail/urban-refuge/tree/master.svg?style=svg)](https://circleci.com/gh/hicsail/urban-refuge/tree/master)
+[![CircleCI](https://circleci.com/gh/hicsail/urban-refuge/tree/master.svg?style=svg&circle-token=3ca3212ba677915bc0d8ee9307251707e74ddc8e)](https://circleci.com/gh/hicsail/urban-refuge/tree/master)
 
 ## CircleCI and HockeyApp Integration
  ### Command Line Helper / Options
