@@ -1,0 +1,21 @@
+machine:
+  node:
+    version: 6.10.1
+  java:
+    version: oraclejdk8
+
+test:
+  override:
+    - npm install -g cordova ionic
+    - cd client && npm install
+    - cd client && ionic build android
+
+deployment:
+  production:
+    branch: deployment
+    commands:
+      - npm install -g cordova ionic
+      - cd client && npm install
+      - cd client && ionic state restore
+      - cd client && ionic build android --prod
+      - chmod +x ./android_deploy.sh &&./android_deploy.sh
