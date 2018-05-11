@@ -8,7 +8,7 @@ export class HockeyApp {
   private iosAppId:string = "546c46b0adf24f52abfe6f2e29dbfeca";
   private sendAutoUpdates = true;
   private ignoreErrorHeader = false;
-  private loginMode = window['hockeyapp'].VALIDATE;
+  private loginMode = window['hockeyapp'] ? window['hockeyapp'].VALIDATE : false;
   private androidAppSecret = ''; //if  loginMode is email only. iOS only works with anonymous
 
   constructor(private platform:Platform) {}

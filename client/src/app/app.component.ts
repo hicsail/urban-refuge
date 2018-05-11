@@ -25,9 +25,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      this.hockeyApp.start();
-      this.hockeyApp.trackEvent("APP_OPEN");
-      this.hockeyApp.checkHockeyAppUpdates();
+      if (!(this.platform.is('core') || this.platform.is('mobileweb'))) {
+        this.hockeyApp.start();
+        this.hockeyApp.trackEvent("APP_OPEN");
+        this.hockeyApp.checkHockeyAppUpdates();
+      }
     });
   }
 }
