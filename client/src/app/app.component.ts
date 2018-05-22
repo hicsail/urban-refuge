@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
-import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
-import { HockeyApp } from "../providers/hockey-app";
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +15,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform,private hockeyApp:HockeyApp) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
   }
 
@@ -23,13 +23,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-      if (!(this.platform.is('core') || this.platform.is('mobileweb'))) {
-        this.hockeyApp.start();
-        this.hockeyApp.trackEvent("APP_OPEN");
-        this.hockeyApp.checkHockeyAppUpdates();
-      }
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 }

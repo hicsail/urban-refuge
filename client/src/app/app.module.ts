@@ -4,24 +4,21 @@ import { MyApp } from './app.component';
 import { MapPage} from '../pages/map/map';
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
 import { ViewResourcePage } from '../pages/view-resource/view-resource';
-import { AgmCoreModule } from 'angular2-google-maps/core';
-import { GoogleMapComponent } from "../components/google-map/google-map";
-import { HttpService } from "../providers/http-service";
-import { HockeyApp } from "../providers/hockey-app";
+import { BrowserModule } from '@angular/platform-browser';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
     MyApp,
     MapPage,
     ResourceSelectionPage,
-    GoogleMapComponent,
     ViewResourcePage
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDAYbh5oOwGUAMYAwzPcVdyMuFZlLZ0ffc'
-    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,9 +28,9 @@ import { HockeyApp } from "../providers/hockey-app";
     ViewResourcePage
   ],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpService,
-    HockeyApp
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
