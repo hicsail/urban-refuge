@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavParams, Slides } from 'ionic-angular';
+import L from 'leaflet';
 
 @Component({
   selector: 'page-map',
@@ -9,6 +10,7 @@ export class MapPage {
 
   @ViewChild('slider') slider:Slides;
   public selectedResource = "";
+  map: any;
 
   constructor(public navParams: NavParams) {
     this.selectedResource = navParams.data;
@@ -19,7 +21,11 @@ export class MapPage {
   }
 
   ionViewDidEnter() {
-    if (this.selectedResource == 'Cash' || this.selectedResource == 'Health' || this.selectedResource == 'Other'){
+    this.map = L.map('map').setView([41.0131, 28.9641], 18);
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(this.map);
+    if (this.selectedResource == 'Cash' || this.selectedResource == 'Health' || this.selectedResource == 'Other') {
       this.slider.slideNext();
     }
   }
