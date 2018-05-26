@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
+import { CacheService } from "ionic-cache";
 
 @Component({
   templateUrl: 'app.html'
@@ -15,12 +16,18 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    private cache: CacheService, 
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.cache.setDefaultTTL(60 * 60 * 24);
+      this.cache.setOfflineInvalidate(false);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

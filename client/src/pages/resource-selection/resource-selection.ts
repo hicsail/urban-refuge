@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map'
+import { FilterProvider } from '../../providers/filter/filter';
 
 @Component({
   selector: 'page-resource-selection',
@@ -8,7 +9,9 @@ import { MapPage } from '../map/map'
 })
 export class ResourceSelectionPage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(
+    public navCtrl: NavController) {
+    }
 
   getResource(resource) {
     this.navCtrl.push(MapPage, resource);
