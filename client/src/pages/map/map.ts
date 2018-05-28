@@ -40,26 +40,26 @@ export class MapPage {
 
     var resource = this.selectedResource.toLowerCase();
 
-    this.filterProvider.getData(this.selectedResource).subscribe(data => {
-      L.geoJSON(osmtogeojson(data), {
-        style: function(feature) {          
-            // return {color: feature.properties.color};
-            return {
-              color: "#0288D1"
-            };
-        },
-        pointToLayer: function(feature, latlng) {
-          return L.marker(latlng, {
-            icon: L.icon({
-              iconUrl: 'assets/map/' + resource +'.png'
-            })
-          });
-        },
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup(JSON.stringify(feature.properties));
-        }
-      }).addTo(this.map);
-    });
+    // this.filterProvider.getData(this.selectedResource).subscribe(data => {
+    //   L.geoJSON(osmtogeojson(data), {
+    //     style: function(feature) {          
+    //         // return {color: feature.properties.color};
+    //         return {
+    //           color: "#0288D1"
+    //         };
+    //     },
+    //     pointToLayer: function(feature, latlng) {
+    //       return L.marker(latlng, {
+    //         icon: L.icon({
+    //           iconUrl: 'assets/map/' + resource +'.png'
+    //         })
+    //       });
+    //     },
+    //     onEachFeature: function(feature, layer) {
+    //       layer.bindPopup(JSON.stringify(feature.properties));
+    //     }
+    //   });
+    // });
   }
 
   ionViewWillEnter() {
@@ -84,7 +84,7 @@ export class MapPage {
   }
 
   ionViewWillUnload() {
-    // console.log('ionViewWillUnload');
+    console.log('ionViewWillUnload');
   }
 
   // getIcon(icon) {

@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
 import { CacheService } from "ionic-cache";
 
-import { HockeyApp } from 'ionic-hockeyapp';
+// import { HockeyApp } from 'ionic-hockeyapp';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,8 +23,9 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public app: App,
-    private hockeyapp: HockeyApp)
+    public app: App
+    // ,private hockeyapp: HockeyApp
+  )
      {
     this.initializeApp();
   }
@@ -43,7 +44,7 @@ export class MyApp {
       // Specifies whether you would like to display the standard dialog when the app is about to crash. This parameter is only relevant on Android.
       let ignoreCrashDialog = true;
   
-      this.hockeyapp.start(androidAppId, iosAppId, autoSendCrashReports, ignoreCrashDialog);
+      // this.hockeyapp.start(androidAppId, iosAppId, autoSendCrashReports, ignoreCrashDialog);
   
       //So app doesn't close when hockey app activities close
       //This also has a side effect of unable to close the app when on the rootPage and using the back button.

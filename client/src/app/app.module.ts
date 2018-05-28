@@ -14,7 +14,7 @@ import { CacheModule } from "ionic-cache";
 import { FilterProvider } from '../providers/filter/filter';
 import { MapProvider } from '../providers/map/map';
 
-import { HockeyApp } from 'ionic-hockeyapp';
+// import { HockeyApp } from 'ionic-hockeyapp';
 
 @NgModule({
   declarations: [
@@ -41,8 +41,8 @@ import { HockeyApp } from 'ionic-hockeyapp';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FilterProvider,
-    MapProvider,
-    HockeyApp
+    MapProvider
+    // ,HockeyApp
   ]
 })
 export class AppModule {}
