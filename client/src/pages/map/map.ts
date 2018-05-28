@@ -14,54 +14,86 @@ import { MapProvider } from '../../providers/map/map';
 export class MapPage {
 
   @ViewChild('slider') slider: Slides;
-  selectedResource;
+  selectedResource: string = '';
   map: any = null;
-  geoJSONLayer: any = null;
   // searchArea: string;
   // features = [];
   // myQuery: string;
 
+  // icon: any = null;
+
   constructor(private filterProvider: FilterProvider, public navParams: NavParams, private mapProvider: MapProvider) {
     this.selectedResource = navParams.data;
     // this.searchArea = '3600223474';
-    console.log('constructor');
-    
   }
 
   ionViewDidLoad() {
     // this.getResource(this.selectedResource);
-    console.log('ionViewDidLoad');
+    // console.log('ionViewDidLoad');
+
+    // this.icon = this.getIcon(this.selectedResource);
+
     this.map = L.map('map').setView([41.0131, 28.9641], 18);
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 18
     }).addTo(this.map);
-    console.log(this.map);
+
+    var resource = this.selectedResource.toLowerCase();
+
+    this.filterProvider.getData(this.selectedResource).subscribe(data => {
+      L.geoJSON(osmtogeojson(data), {
+        style: function(feature) {          
+            // return {color: feature.properties.color};
+            return {
+              color: "#0288D1"
+            };
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: 'assets/map/' + resource +'.png'
+            })
+          });
+        },
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup(JSON.stringify(feature.properties));
+        }
+      }).addTo(this.map);
+    });
   }
 
   ionViewWillEnter() {
-    this.getResource(this.selectedResource);
-    console.log('ionViewWillEnter');
+    // console.log('ionViewWillEnter');
     
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidEnter');
+    // console.log('ionViewDidEnter');
+    // this.getResource(this.selectedResource);
   }
 
   ionViewWillLeave() {
-    console.log('ionViewWillLeave');
-    this.map = null;
-    this.geoJSONLayer = null;
-    this.selectedResource = null;
+    // console.log('ionViewWillLeave');
+    
   }
 
   ionViewDidLeave() {
     console.log('ionViewDidLeave');
+    // this.map = null;
+    // this.selectedResource = null;
   }
 
   ionViewWillUnload() {
-    console.log('ionViewWillUnload');
+    // console.log('ionViewWillUnload');
   }
+
+  // getIcon(icon) {
+  //   return L.icon({
+  //     iconUrl: 'https://openclipart.org/download/292749/abstract-icon.svg'
+  //     // iconUrl: 'assets/map/education.png'
+  //     // iconUrl: 'assets/map/' + icon.toLowerCase() +'.png'
+  //   });
+  // }
 
   getResource(resource) {
 
@@ -70,24 +102,28 @@ export class MapPage {
     //   this.geoJSONLayer.clearLayers();
     // }
 
-    this.filterProvider.getData(this.selectedResource).subscribe(data => {
-      console.log(this.map);
-      console.log(data);
-      if (this.map !== null) {
-        var geoJSONdata = osmtogeojson(data);
-        this.geoJSONLayer = L.geoJSON(geoJSONdata, {
-          style: function (feature) {
-              // return {color: feature.properties.color};
-              return {
-                color: "#0288D1"
-              };
-          },
-          onEachFeature: function (feature, layer) {
-            layer.bindPopup(JSON.stringify(feature.properties));
-          }
-        }).addTo(this.map);
-      }
-    });
+    // this.filterProvider.getData(resource).subscribe(data => {
+    //   if (this.map !== null) {
+    //     L.geoJSON(osmtogeojson(data), {
+    //       style: function(feature) {
+    //           // return {color: feature.properties.color};
+    //           return {
+    //             color: "#0288D1"
+    //           };
+    //       },
+    //       pointToLayer: function(feature, latlng) {
+    //         return L.marker(latlng, {
+    //           icon: L.icon({
+    //             iconUrl: 'assets/map/' + resource.toLowerCase() +'.png'
+    //           })
+    //         });
+    //       },
+    //       onEachFeature: function(feature, layer) {
+    //         layer.bindPopup(JSON.stringify(feature.properties));
+    //       }
+    //     }).addTo(this.map);
+    //   }
+    // });
     // this.filterProvider.educationData
     
     // this.selectedResource = resource;
