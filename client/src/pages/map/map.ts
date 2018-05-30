@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavParams, Slides } from 'ionic-angular';
-import L from 'leaflet';
+import * as L from 'leaflet'
+import 'leaflet.markercluster';
+//import L from 'leaflet';
 // import $ from 'jquery';
 import osmtogeojson from 'osmtogeojson';
 import { FilterProvider } from '../../providers/filter/filter';
@@ -40,6 +42,9 @@ export class MapPage {
 
     var resource = this.selectedResource.toLowerCase();
 
+    var markers = L.markerClusterGroup();
+    this.map.addLayer(markers);
+
     this.filterProvider.getData(this.selectedResource).subscribe(data => {
       L.geoJSON(osmtogeojson(data), {
         style: function(feature) {          
@@ -49,16 +54,18 @@ export class MapPage {
             };
         },
         pointToLayer: function(feature, latlng) {
-          return L.marker(latlng, {
+            //markers.addLayer(latlng);
+          return markers.addLayer(L.marker(latlng, {
             icon: L.icon({
               iconUrl: 'assets/map/' + resource +'.png'
             })
-          });
+          }));
+          //return null;
         },
         onEachFeature: function(feature, layer) {
           layer.bindPopup(JSON.stringify(feature.properties));
         }
-      }).addTo(this.map);
+      });
     });
   }
 
