@@ -17,4 +17,7 @@ export class ResourceSelectionPage {
     this.navCtrl.push(MapPage, resource);
   }
 
+  openWebsite() {
+  }
+
 }

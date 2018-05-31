@@ -12,9 +12,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { CacheModule } from "ionic-cache";
 import { FilterProvider } from '../providers/filter/filter';
-import { MapProvider } from '../providers/map/map';
-
-// import { HockeyApp } from 'ionic-hockeyapp';
 
 @NgModule({
   declarations: [
@@ -40,9 +37,7 @@ import { MapProvider } from '../providers/map/map';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FilterProvider,
-    MapProvider
-    // ,HockeyApp
+    FilterProvider
   ]
 })
 export class AppModule {}
