@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavParams, Slides } from 'ionic-angular';
+import { NavParams, Slides, NavController } from 'ionic-angular';
 import { FilterProvider } from '../../providers/filter/filter';
 // import * as L from 'leaflet'
 import L from 'leaflet'
 import 'leaflet.markercluster';
+import $ from 'jquery';
+import { ViewResourcePage } from '../view-resource/view-resource';
 
 @Component({
   selector: 'page-map',
@@ -16,7 +18,10 @@ export class MapPage {
   map: any = null;
   markers: any = null;
 
-  constructor(private filterProvider: FilterProvider, public navParams: NavParams) {
+  constructor(
+    private filterProvider: FilterProvider, 
+    public navParams: NavParams,
+    public navCtrl: NavController) {
     this.selectedResource = navParams.data;
   }
 
@@ -52,7 +57,13 @@ export class MapPage {
       data.elements.forEach(element => {
         this.markers.addLayer(L.marker(L.latLng(element.lat, element.lon), {
           icon: mIcon
-        }).bindPopup(JSON.stringify(element.tags)));
+        }).bindPopup('<button>Learn More</button>').on('popupopen', () => {
+          $("button").click(() => {
+              element.tags.img = resource;
+              element.tags.type = element.tags.amenity || element.tags.building || element.tags.office || element.tags.healthcare || element.tags.shop || element.tags.emergency;
+              this.navCtrl.push(ViewResourcePage, element.tags);
+          });
+        }));
       });
       this.map.addLayer(this.markers);
     });
