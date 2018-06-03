@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CacheModule } from "ionic-cache";
 import { FilterProvider } from '../providers/filter/filter';
 
+import { EmailComposer } from '@ionic-native/email-composer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +39,8 @@ import { FilterProvider } from '../providers/filter/filter';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FilterProvider
+    FilterProvider,
+    EmailComposer
   ]
 })
 export class AppModule {}

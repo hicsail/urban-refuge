@@ -60,7 +60,7 @@ export class MapPage {
         }).bindPopup('<button>Learn More</button>').on('popupopen', () => {
           $("button").click(() => {
               element.tags.img = resource;
-              element.tags.type = element.tags.amenity || element.tags.building || element.tags.office || element.tags.healthcare || element.tags.shop || element.tags.emergency;
+              // element.tags.type = element.tags.amenity || element.tags.building || element.tags.office || element.tags.healthcare || element.tags.shop || element.tags.emergency;
               this.navCtrl.push(ViewResourcePage, element.tags);
           });
         }));

@@ -3,7 +3,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding class="background">
   <h5 *ngIf="resource['name:en']; else nativeName">{{resource['name:en']}}</h5>
   <ng-template #nativeName>
@@ -12,37 +11,46 @@
   <h5 *ngIf="resource['name:ar']" class="right">{{resource['name:ar']}}</h5>
   <ion-grid>
     <ion-row>
-      <img class="mainIcon" src="{{getImageURL(resource.img)}}">
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let r of resource.types">
-        <img *ngIf="r" class="secondIcons" src="{{getImageURL(r)}}">
-      </ion-col>
+      <img class="mainIcon" src="{{imageURL}}">
     </ion-row>
   </ion-grid>
   <ion-list no-lines>
-    <ion-item *ngIf="resource['addr:housenumber'] || resource['addr:street'] || resource['addr:district'] || resource['addr:city'] || resource['addr:state'] || resource['addr:postcode']" class="background">
+    <ion-item *ngIf="resource['addr:full']; else generatedAddress" class="background">
       <ion-icon name="pin" item-left></ion-icon>
-      <h6><span *ngIf="resource['addr:housenumber']">{{resource['addr:housenumber']}} </span><span *ngIf="resource['addr:street']">{{resource['addr:street'] }}</span><span *ngIf="resource['addr:district']">, {{resource['addr:district']}}</span><span *ngIf="resource['addr:city']">, {{jsUcfirst(resource['addr:city'])}}</span><span *ngIf="resource['addr:state']">, {{jsUcfirst(resource['addr:state'])}}</span><span *ngIf="resource['addr:postcode']">, {{resource['addr:postcode']}}</span></h6>
+      <h6>{{resource['addr:full']}}</h6>
     </ion-item>
-    <!-- <ion-item *ngIf="resource.ariabicAddress" class="right background">
-      <h6>{{resource.ariabicAddress}}</h6>
-      <ion-icon name="pin" item-right></ion-icon>
-    </ion-item> -->
+    <ng-template #generatedAddress>
+      <ion-item *ngIf="fullAddress" class="background">
+        <ion-icon name="pin" item-left></ion-icon>
+        <h6>{{fullAddress}}</h6>
+      </ion-item>
+    </ng-template>
     <ion-item class="background" *ngIf="resource.phone">
       <ion-icon (click)="call()" color="primary" name="call" item-left></ion-icon>
       <ion-label class="center">{{resource.phone}}</ion-label>
       <ion-icon (click)="text()" color="primary" name="text" item-right></ion-icon>
     </ion-item>
-    <ion-item *ngIf="resource.type" class="background">
+    <ion-item class="background">
       <ion-icon name="paper" item-left></ion-icon>
-      <h6>{{jsUcfirst(resource.type)}}</h6>
+      <!-- <h6>{{resource.type}}</h6> -->
+      <h6 *ngIf="resource.amenity">Amenity: {{resource.amenity}}</h6>
+      <h6 *ngIf="resource.building">Building: {{resource.building}}</h6>
+      <h6 *ngIf="resource.government">Government: {{resource.government}}</h6>
+      <h6 *ngIf="resource.office">Office: {{resource.office}}</h6>
+      <h6 *ngIf="resource.healthcare">Healthcare: {{resource.healthcare}}</h6>
+      <h6 *ngIf="resource['healthcare:speciality']">Healthcare Speciality: {{resource['healthcare:speciality']}}</h6>
+      <h6 *ngIf="resource.shop">Shop: {{resource.shop}}</h6>
+      <h6 *ngIf="resource.emergency">Emergency: {{resource.emergency}}</h6>
       <h6 *ngIf="resource.fee">Fee: {{resource.fee}}</h6>
+      <h6 *ngIf="resource['addr:neighbourhood']">Neighbourhood: {{resource['addr:neighbourhood']}}</h6>
       <h6 *ngIf="resource.opening_hours">Hours: {{resource.opening_hours}}</h6>
       <h6 *ngIf="resource.operator">Operator: {{resource.operator}}</h6>
+      <h6 *ngIf="resource.source">Source: {{resource.source}}</h6>
+      <h6 *ngIf="resource['operator:type']">Operator Type: {{resource['operator:type']}}</h6>
       <h6 *ngIf="resource.wheelchair">Wheelchair: {{resource.wheelchair}}</h6>
       <h6 *ngIf="resource.internet_access">Internet Access: {{resource.internet_access}}</h6>
       <h6 *ngIf="resource.shelter_type">Shelter Type: {{resource.shelter_type}}</h6>
+      <h6 *ngIf="resource.note">Note: {{resource.note}}</h6>
     </ion-item>
     <ion-item *ngIf="resource.website" class="background">
       <ion-icon name="globe" item-left></ion-icon>
@@ -50,7 +58,7 @@
     </ion-item>
     <ion-item *ngIf="resource.email" class="background">
       <ion-icon name="mail" item-left></ion-icon>
-      <a href="{{resource.website}}"><h6>{{resource.email}}</h6></a>
+      <!-- <h6 click="sendEmail({{resource.email}})">{{resource.email}}</h6> -->
     </ion-item>
     <!-- <ion-item *ngIf="resource.img" class="right background">
       <h6>{{resource.img}}</h6>
