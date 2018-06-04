@@ -23,6 +23,7 @@ export class MapPage {
     public navParams: NavParams,
     public navCtrl: NavController) {
     this.selectedResource = navParams.data;
+    console.log(navCtrl.getViews());
   }
 
   ionViewDidLoad() {
@@ -55,9 +56,19 @@ export class MapPage {
         iconAnchor: [20, 20]
       });
       data.elements.forEach(element => {
+        var elementName = '';
+        if (element.tags['name:en']) {
+          elementName = element.tags['name:en'];
+        } else if(element.tags.name) {
+          elementName = element.tags.name;
+        }
+        var elementArName = '';
+        if (element.tags['name:ar']) {
+          elementArName = element.tags['name:ar'];
+        }
         this.markers.addLayer(L.marker(L.latLng(element.lat, element.lon), {
           icon: mIcon
-        }).bindPopup('<button>Learn More</button>').on('popupopen', () => {
+        }).bindPopup('<h6>' + elementName + '</h6><h6 style="display: block; text-align: right">' + elementArName + '</h6><button style="background-color: #42C6A0; color: white; height: 25px; border-radius: 4px; font-weight: 700; text-align: center; margin: 0 auto; display: block;">LEARN MORE</button>').on('popupopen', () => {
           $("button").click(() => {
               element.tags.img = resource;
               // element.tags.type = element.tags.amenity || element.tags.building || element.tags.office || element.tags.healthcare || element.tags.shop || element.tags.emergency;

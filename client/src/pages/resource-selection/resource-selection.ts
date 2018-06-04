@@ -11,6 +11,7 @@ export class ResourceSelectionPage {
 
   constructor(
     public navCtrl: NavController) {
+      console.log(navCtrl.getViews());
     }
 
   getResource(resource) {

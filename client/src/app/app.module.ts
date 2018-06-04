@@ -15,6 +15,11 @@ import { FilterProvider } from '../providers/filter/filter';
 
 import { EmailComposer } from '@ionic-native/email-composer';
 
+import { HockeyApp } from 'ionic-hockeyapp';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { CallNumber } from '@ionic-native/call-number';
+import { SMS } from '@ionic-native/sms'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +45,11 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FilterProvider,
-    EmailComposer
+    EmailComposer,
+    HockeyApp,
+    InAppBrowser,
+    CallNumber,
+    SMS
   ]
 })
 export class AppModule {}
