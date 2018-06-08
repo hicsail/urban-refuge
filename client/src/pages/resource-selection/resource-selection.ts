@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map'
-import { FilterProvider } from '../../providers/filter/filter';
+import { HockeyApp } from 'ionic-hockeyapp';
 
 @Component({
   selector: 'page-resource-selection',
@@ -9,16 +9,15 @@ import { FilterProvider } from '../../providers/filter/filter';
 })
 export class ResourceSelectionPage {
 
-  constructor(
-    public navCtrl: NavController) {
-      console.log(navCtrl.getViews());
-    }
+  constructor(private navCtrl: NavController, private hockeyApp: HockeyApp) {
+  }
 
   getResource(resource) {
     this.navCtrl.push(MapPage, resource);
   }
 
   openWebsite() {
+    this.hockeyApp.trackEvent("LAUNCHED_WEBSITE");
   }
 
 }

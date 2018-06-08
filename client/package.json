@@ -22,7 +22,7 @@
     "@ionic-native/call-number": "^4.7.0",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/email-composer": "^4.7.0",
-    "@ionic-native/in-app-browser": "^4.7.0",
+    "@ionic-native/geolocation": "^4.7.0",
     "@ionic-native/sms": "^4.7.0",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
@@ -32,8 +32,8 @@
     "cordova-ios": "4.5.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-email-composer": "^0.8.15",
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-hockeyapp": "^5.1.2",
-    "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -59,14 +59,16 @@
     "plugins": {
       "cordova-plugin-hockeyapp": {},
       "cordova-plugin-email-composer": {},
-      "cordova-plugin-inappbrowser": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "mx.ferreyra.callnumber": {},
-      "cordova-sms-plugin": {}
+      "cordova-sms-plugin": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      }
     },
     "platforms": [
       "android",

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 // import { EmailComposer } from '@ionic-native/email-composer';
-// import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { HockeyApp } from 'ionic-hockeyapp';
@@ -43,11 +42,6 @@ export class ViewResourcePage {
     this.imageURL = 'assets/images/' + this.resource['img'].toLowerCase() + '.png';
     this.generateFullAddress();
   }
-
-  // public jsUcfirst(string) {
-  //   console.log(string);
-  //   return string.charAt(0).toUpperCase() + string.slice(1);
-  // }
 
   public sendEmail(email) {
     console.log('email');
@@ -92,7 +86,6 @@ export class ViewResourcePage {
             this.callNumber.callNumber(this.resource['phone'], true)
             .then(res => console.log('Launched dialer!', res))
             .catch(err => console.log('Error launching dialer', err));
-            // new InAppBrowser("tel://"+this.resource.phone,'_system');
           }
         }
       ]
@@ -108,7 +101,6 @@ export class ViewResourcePage {
         intent: 'INTENT'
       }
     });
-    // new InAppBrowser("sms://"+this.resource.phone,'_system');
   }
   
 }

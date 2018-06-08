@@ -6,6 +6,14 @@
 
 <ion-content>
   <div id="map"></div>
+  <ion-fab top right>
+    <button *ngIf="trackCurrentLocation" ion-fab (click)="recenterMap()">
+      <ion-icon color="secondary" name="locate"></ion-icon>
+    </button>
+    <button *ngIf="!trackCurrentLocation" ion-fab>
+      <ion-spinner></ion-spinner>
+    </button>
+  </ion-fab>
   <ion-footer class="background">
     <ion-slides pager #slider>
       <ion-slide>
