@@ -22,6 +22,7 @@ export class FilterProvider {
 
   constructor(private cache: CacheService, public http: HttpClient) {
 
+    // the main url where requests are sent
     this.URL = 'https://overpass-api.de/api/interpreter';
 
     // this.educationRequest = '[out:json][timeout:900];area(3600223474)->.searchArea;(node["amenity"~"college|kindergarten|library|archive|public_bookcase|school|music_school|driving_school|university|research_institute"](area.searchArea);way["amenity"~"college|kindergarten|library|archive|public_bookcase|school|music_school|driving_school|university|research_institute"](area.searchArea);relation["amenity"~"college|kindergarten|library|archive|public_bookcase|school|music_school|driving_school|university|research_institute"](area.searchArea);node["building"~"university"](area.searchArea);way["building"~"university"](area.searchArea);relation["building"~"university"](area.searchArea););out body geom;';
@@ -31,17 +32,6 @@ export class FilterProvider {
     // this.healthRequest = '[out:json][timeout:900];area(3600223474)->.searchArea;(node["amenity"~"baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary|"](area.searchArea);way["amenity"~"baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary|"](area.searchArea);relation["amenity"~"baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary|"](area.searchArea);node["healthcare"~"blood_donation"](area.searchArea);way["healthcare"~"blood_donation"](area.searchArea);relation["healthcare"~"blood_donation"](area.searchArea);node["building"~"hospital"](area.searchArea);way["building"~"hospital"](area.searchArea);relation["building"~"hospital"](area.searchArea);node["shop"~"medical_supply|nutrition_supplements"](area.searchArea);way["shop"~"medical_supply|nutrition_supplements"](area.searchArea);relation["shop"~"medical_supply|nutrition_supplements"](area.searchArea););out body geom;';
     // this.otherRequest = '[out:json][timeout:900];area(3600223474)->.searchArea;(node["amenity"~"community_centre|social_centre|courthouse|embassy|internet_cafe|place_of_worship|police|post_office|"](area.searchArea);way["amenity"~"community_centre|social_centre|courthouse|embassy|internet_cafe|place_of_worship|police|post_office|"](area.searchArea);relation["amenity"~"community_centre|social_centre|courthouse|embassy|internet_cafe|place_of_worship|police|post_office|"](area.searchArea);node["building"~"civic"](area.searchArea);way["building"~"civic"](area.searchArea);relation["building"~"civic"](area.searchArea);node["emergency"~"ambulance_station|defibrillator|landing_site|emergency_ward_entrance|phone|"](area.searchArea);way["emergency"~"ambulance_station|defibrillator|landing_site|emergency_ward_entrance|phone|"](area.searchArea);relation["emergency"~"ambulance_station|defibrillator|landing_site|emergency_ward_entrance|phone|"](area.searchArea);node["office"~"lawyer|notary"](area.searchArea);way["office"~"lawyer|notary"](area.searchArea);relation["office"~"lawyer|notary"](area.searchArea););out body geom;';
 
-    // this.http.post(url, )
-    // let req = this.http.post(url)
-    //   .map(res => {
-    //     let toast = this.toastCtrl.create({
-    //       message: 'New data from API loaded',
-    //       duration: 2000
-    //     });
-    //     toast.present();
- 
-    //     return res.json().results;
-    //   });
   }
 
   getData(filter) {
@@ -150,16 +140,19 @@ export class FilterProvider {
   getRequestBody(filter) {
     // 3600223474 area of Istanbul
     var requestBody = '[out:json][timeout:900];area(3600223474)->.searchArea;(';
+    // constructing body of the request
     Object.keys(filter).forEach(key => {
       filter[key].forEach(value => {
         requestBody += 'node["' + key + '"="' + value + '"](area.searchArea);';
       });
     });
     requestBody += ');out body geom;';
+    // console.log(requestBody) to see the body
     return requestBody;
   }
 
   getResponse(request, filter) {
+    // when data is retrieved from OSM API, then it will be cached
     return this.cache.loadFromObservable(filter, this.http.post(this.URL, request));
   }
 

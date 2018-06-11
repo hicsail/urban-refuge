@@ -2,11 +2,21 @@
 
 ## Installation instructions
 ```
-npm install -g cordova ionic
-npm install -g ios-sim ios-deploy //if emulating or deploying to ios device
-npm install
-ionic state restore
-ionic serve || ionic run ios|android || ionic emulate ios|android
+npm install -g cordova // to install cordova
+npm install -g ionic // to install ionic
+
+cd client // to go to the root directory
+npm install // to install all dependencies
+
+ionic cordova platform add android // to add android platform
+ionic cordova platform add ios // to add ios platform
+ionic cordova emulate android // to emulate in android emulator
+ionic cordova emulate ios // to emulate in ios emulator
+
+ionic cordova build android // to generate .apk file
+ionic cordova build ios // to generate for ios
+
+ionic lab // to emulate in all 3 platforms (Android, IOS, Windows) in the browser
 ```
 
 ## Feature list

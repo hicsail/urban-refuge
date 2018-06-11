@@ -9,14 +9,13 @@ import { EmailComposer } from '@ionic-native/email-composer';
   selector: 'page-view-resource',
   templateUrl: 'view-resource.html'
 })
+
 export class ViewResourcePage {
 
   resource: Object = {};
   fullAddress: string = '';
   imageURL: string = '';
 
-  // private emailComposer: EmailComposer,
-  
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private callNumber: CallNumber, private sms: SMS, private hockeyApp:HockeyApp, private emailComposer: EmailComposer) {
     this.resource = navParams.data;
   }
@@ -27,12 +26,11 @@ export class ViewResourcePage {
   }
 
   public sendEmail() {
-    console.log(this.resource['email']);
-    this.emailComposer.isAvailable().then((available: boolean) => {
-      if (available) {
-        console.log('email is ready to be sent');
-      }
-     });
+    // send email
+    let email = {
+      to: this.resource['email']
+    };
+    this.emailComposer.open(email);
   }
 
   // generating full address out of the given information

@@ -13,6 +13,7 @@ export class ResourceSelectionPage {
   }
 
   getResource(resource) {
+    // open a map page
     this.navCtrl.push(MapPage, resource);
   }
 
