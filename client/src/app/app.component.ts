@@ -16,7 +16,7 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService, app:App, hockeyApp:HockeyApp) {
     platform.ready().then(() => {
       // set android id
-      let androidAppId = '711394b5c4874f48912e17e5489cb9a2';
+      let androidAppId = '';
       // set ios id
       let iosAppId = '';
       let autoSendCrashReports = false;

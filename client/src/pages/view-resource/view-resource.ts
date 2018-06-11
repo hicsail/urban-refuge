@@ -4,6 +4,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { HockeyApp } from 'ionic-hockeyapp';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-view-resource',
@@ -16,7 +17,7 @@ export class ViewResourcePage {
   fullAddress: string = '';
   imageURL: string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private callNumber: CallNumber, private sms: SMS, private hockeyApp:HockeyApp, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private callNumber: CallNumber, private sms: SMS, private hockeyApp:HockeyApp, private emailComposer: EmailComposer, private iab: InAppBrowser) {
     this.resource = navParams.data;
   }
 
@@ -26,11 +27,18 @@ export class ViewResourcePage {
   }
 
   public sendEmail() {
-    // send email
+    // send email to the resource
     let email = {
       to: this.resource['email']
     };
     this.emailComposer.open(email);
+  }
+
+  public openWebsite() {
+    // open website of the resource
+    const browser = this.iab.create(this.resource['website'], '_self', {
+      zoom: 'no'
+    });
   }
 
   // generating full address out of the given information

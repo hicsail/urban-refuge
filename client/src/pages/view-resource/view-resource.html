@@ -63,12 +63,12 @@
     </ion-item>
     <!-- If the resource has a website, then show the webstie -->
     <ion-item text-wrap *ngIf="resource.website" class="background">
-        <ion-icon name="globe" item-start></ion-icon>
-        <ion-label><a href="{{resource.website}}">{{resource.website}}</a></ion-label>
+        <ion-icon name="globe" color="primary" item-start (click)="openWebsite()"></ion-icon>
+        <ion-label>{{resource.website}}</ion-label>
     </ion-item>
     <!-- If the resource has an email, then show the email -->
     <ion-item text-wrap *ngIf="resource.email" class="background">
-      <ion-icon name="mail" item-start (click)="sendEmail()"></ion-icon>
+      <ion-icon name="mail" color="primary" item-start (click)="sendEmail()"></ion-icon>
       <ion-label>{{resource.email}}</ion-label>
     </ion-item>
   </ion-list>

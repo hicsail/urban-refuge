@@ -15,6 +15,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms'
 import { Geolocation } from '@ionic-native/geolocation';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HockeyApp,
     CallNumber,
     SMS,
-    Geolocation
+    Geolocation,
+    InAppBrowser
   ]
 })
 export class AppModule {}

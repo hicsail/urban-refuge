@@ -96,6 +96,8 @@ export class MapPage {
       });
       // looping through the nodes and creating markers and adding to the markers cluster
       data.elements.forEach(element => {
+        // comment out if you want to filter only the resources which have websites and emails
+        // if (element.tags.website && element.tags.email) {
         var elementName = '';
         // if there English name of the node, then we assign it
         if (element.tags['name:en']) {
@@ -127,6 +129,8 @@ export class MapPage {
               this.navCtrl.push(ViewResourcePage, element.tags);
             });
           }));
+        // comment out if you want to filter only the resources which have websites and emails
+        // } 
       });
       // add all markers on top of the map as a layer
       this.map.addLayer(this.markers);
