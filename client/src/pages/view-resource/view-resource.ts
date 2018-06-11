@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
-// import { EmailComposer } from '@ionic-native/email-composer';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { HockeyApp } from 'ionic-hockeyapp';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
   selector: 'page-view-resource',
@@ -16,26 +16,9 @@ export class ViewResourcePage {
   imageURL: string = '';
 
   // private emailComposer: EmailComposer,
-  // private iab: InAppBrowser
-  // ,public platform: Platform
   
-  constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private alertCtrl: AlertController,
-    private callNumber: CallNumber,
-    private sms: SMS,
-    private hockeyApp:HockeyApp
-  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private callNumber: CallNumber, private sms: SMS, private hockeyApp:HockeyApp, private emailComposer: EmailComposer) {
     this.resource = navParams.data;
-    // console.log(this.resource);
-    // console.log(navCtrl.getViews());
-    // navCtrl.pop
-    // platform.ready().then(() => {
-    //   platform.registerBackButtonAction(() => {
-    //     console.log("backPressed");
-    //   });
-    // });
   }
 
   ionViewDidLoad() {
@@ -43,11 +26,16 @@ export class ViewResourcePage {
     this.generateFullAddress();
   }
 
-  public sendEmail(email) {
-    console.log('email');
-    console.log(email);
+  public sendEmail() {
+    console.log(this.resource['email']);
+    this.emailComposer.isAvailable().then((available: boolean) => {
+      if (available) {
+        console.log('email is ready to be sent');
+      }
+     });
   }
 
+  // generating full address out of the given information
   public generateFullAddress() {
     if (this.resource['addr:housenumber']) {
       this.fullAddress += this.resource['addr:housenumber'] + ' ';
@@ -67,9 +55,11 @@ export class ViewResourcePage {
     if (this.resource['addr:postcode']) {
       this.fullAddress += this.resource['addr:postcode'] + ', ';
     }
+    // cutting comma and space at the of the full address
     this.fullAddress = this.fullAddress.slice(0, -2);
   }
 
+  // calling a phone number
   public call() {
     this.alertCtrl.create({
       title: this.resource['phone'],
@@ -92,8 +82,8 @@ export class ViewResourcePage {
     }).present();
   }
 
+  // sending a message
   public text() {
-    console.log('text');
     this.hockeyApp.trackEvent("TEXT_RESOURCE");
     this.hockeyApp.trackEvent("TEXT_RESOURCE: " + this.resource['name']);
     this.sms.send(this.resource['phone'], '', {
