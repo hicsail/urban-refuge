@@ -3,41 +3,73 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding class="background">
-  <h5>{{resource.name}}</h5>
-  <h5 class="right">{{resource.ariabicName}}</h5>
+  <!-- Check if English name exist, then show English name, else show the in the native language -->
+  <h5 *ngIf="resource['name:en']; else nativeName">{{resource['name:en']}}</h5>
+  <ng-template #nativeName>
+    <h5 *ngIf="resource.name">{{resource.name}}</h5>
+  </ng-template>
+  <!-- If Arabic name exist, then show Arabic name -->
+  <h5 *ngIf="resource['name:ar']" class="right">{{resource['name:ar']}}</h5>
+
+  <!-- icon of the feature -->
   <ion-grid>
     <ion-row>
-      <img class="mainIcon" src="{{getImageURL(resource.primaryType)}}">
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let r of resource.types">
-        <img *ngIf="r" class="secondIcons" src="{{getImageURL(r)}}">
-      </ion-col>
+      <img class="mainIcon" src="{{imageURL}}">
     </ion-row>
   </ion-grid>
+  
   <ion-list no-lines>
-    <ion-item *ngIf="resource.address" class="background">
-      <ion-icon name="pin" item-left></ion-icon>
-      <h6>{{resource.address}}</h6>
+    <!-- Check if there is already full address, if not, then generate full address -->
+    <ion-item text-wrap *ngIf="resource['addr:full']; else generatedAddress" class="background">
+      <ion-icon name="pin" item-start></ion-icon>
+      <ion-label>{{resource['addr:full']}}</ion-label>
     </ion-item>
-    <ion-item *ngIf="resource.ariabicAddress" class="right background">
-      <h6>{{resource.ariabicAddress}}</h6>
-      <ion-icon name="pin" item-right></ion-icon>
-    </ion-item>
-    <ion-item class="background" *ngIf="resource.phone">
-      <ion-icon (click)="call()" color="primary" name="call" item-left></ion-icon>
+    <ng-template #generatedAddress>
+      <ion-item text-wrap *ngIf="fullAddress" class="background">
+        <ion-icon name="pin" item-start></ion-icon>
+        <ion-label>{{fullAddress}}</ion-label>
+      </ion-item>
+    </ng-template>
+    <!-- If phone, then show phone number -->
+    <ion-item text-wrap class="background" *ngIf="resource.phone">
+      <ion-icon (click)="call()" color="primary" name="call" item-start></ion-icon>
       <ion-label class="center">{{resource.phone}}</ion-label>
-      <ion-icon (click)="text()" color="primary" name="text" item-right></ion-icon>
+      <ion-icon (click)="text()" color="primary" name="text" item-end></ion-icon>
     </ion-item>
-    <ion-item *ngIf="resource.notes" class="background">
-      <ion-icon name="ios-paper-outline" item-left></ion-icon>
-      <h6>{{resource.notes}}</h6>
+    <!-- Additional information about the filter, show as many info as possible -->
+    <ion-item text-wrap class="background">
+      <ion-icon name="paper" item-start></ion-icon>
+      <ion-label>
+        <p *ngIf="resource.amenity">Amenity: {{resource.amenity}}</p>
+        <p *ngIf="resource.building">Building: {{resource.building}}</p>
+        <p *ngIf="resource.government">Government: {{resource.government}}</p>
+        <p *ngIf="resource.office">Office: {{resource.office}}</p>
+        <p *ngIf="resource.healthcare">Healthcare: {{resource.healthcare}}</p>
+        <p *ngIf="resource['healthcare:speciality']">Healthcare Speciality: {{resource['healthcare:speciality']}}</p>
+        <p *ngIf="resource.shop">Shop: {{resource.shop}}</p>
+        <p *ngIf="resource.emergency">Emergency: {{resource.emergency}}</p>
+        <p *ngIf="resource.fee">Fee: {{resource.fee}}</p>
+        <p *ngIf="resource['addr:neighbourhood']">Neighbourhood: {{resource['addr:neighbourhood']}}</p>
+        <p *ngIf="resource.opening_hours">Hours: {{resource.opening_hours}}</p>
+        <p *ngIf="resource.operator">Operator: {{resource.operator}}</p>
+        <p *ngIf="resource.source">Source: {{resource.source}}</p>
+        <p *ngIf="resource['operator:type']">Operator Type: {{resource['operator:type']}}</p>
+        <p *ngIf="resource.wheelchair">Wheelchair: {{resource.wheelchair}}</p>
+        <p *ngIf="resource.internet_access">Internet Access: {{resource.internet_access}}</p>
+        <p *ngIf="resource.shelter_type">Shelter Type: {{resource.shelter_type}}</p>
+        <p *ngIf="resource.note">Note: {{resource.note}}</p>
+      </ion-label>
     </ion-item>
-    <ion-item *ngIf="resource.ariabicNotes" class="right background">
-      <h6>{{resource.ariabicNotes}}</h6>
-      <ion-icon name="ios-paper-outline" item-right></ion-icon>
+    <!-- If the resource has a website, then show the webstie -->
+    <ion-item text-wrap *ngIf="resource.website" class="background">
+        <ion-icon name="globe" color="primary" item-start (click)="openWebsite()"></ion-icon>
+        <ion-label>{{resource.website}}</ion-label>
+    </ion-item>
+    <!-- If the resource has an email, then show the email -->
+    <ion-item text-wrap *ngIf="resource.email" class="background">
+      <ion-icon name="mail" color="primary" item-start (click)="sendEmail()"></ion-icon>
+      <ion-label>{{resource.email}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

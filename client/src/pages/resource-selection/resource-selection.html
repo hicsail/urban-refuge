@@ -6,16 +6,16 @@ Ionic pages and navigation.
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons end (click)="openWebsite()">
-      <a href="http://www.urbanrefuge.org/">
-      <button ion-button><ion-icon name="link"></ion-icon></button>
-    </a>
+    <ion-buttons end>
+      <button ion-button (click)="openWebsite()">
+        <ion-icon name="link"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content class="background">
+
   <ion-grid>
     <ion-row>
       <ion-col col-2>
@@ -52,5 +52,7 @@ Ionic pages and navigation.
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <img class="footer" src="assets/images/background.png">
+
 </ion-content>

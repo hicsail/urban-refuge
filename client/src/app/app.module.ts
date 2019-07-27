@@ -1,27 +1,34 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { MapPage} from '../pages/map/map';
 import { ResourceSelectionPage } from '../pages/resource-selection/resource-selection';
 import { ViewResourcePage } from '../pages/view-resource/view-resource';
-import { AgmCoreModule } from 'angular2-google-maps/core';
-import { GoogleMapComponent } from "../components/google-map/google-map";
-import { HttpService } from "../providers/http-service";
-import { HockeyApp } from "../providers/hockey-app";
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClientModule } from '@angular/common/http';
+import { CacheModule } from "ionic-cache";
+import { FilterProvider } from '../providers/filter/filter';
+import { HockeyApp } from 'ionic-hockeyapp';
+import { CallNumber } from '@ionic-native/call-number';
+import { SMS } from '@ionic-native/sms'
+import { Geolocation } from '@ionic-native/geolocation';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
     MyApp,
     MapPage,
     ResourceSelectionPage,
-    GoogleMapComponent,
     ViewResourcePage
   ],
   imports: [
+    BrowserModule,
+    HttpClientModule,
+    CacheModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDAYbh5oOwGUAMYAwzPcVdyMuFZlLZ0ffc'
-    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,9 +38,16 @@ import { HockeyApp } from "../providers/hockey-app";
     ViewResourcePage
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpService,
-    HockeyApp
+    FilterProvider,
+    EmailComposer,
+    HockeyApp,
+    CallNumber,
+    SMS,
+    Geolocation,
+    InAppBrowser
   ]
 })
 export class AppModule {}

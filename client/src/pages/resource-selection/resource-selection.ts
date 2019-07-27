@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map'
-import {HockeyApp} from "../../providers/hockey-app";
+import { HockeyApp } from 'ionic-hockeyapp';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-resource-selection',
@@ -9,13 +10,19 @@ import {HockeyApp} from "../../providers/hockey-app";
 })
 export class ResourceSelectionPage {
 
-  constructor(private nav: NavController, private hockeyApp:HockeyApp) {}
-
-  getResource(resource){
-    this.nav.push(MapPage,resource);
+  constructor(private navCtrl: NavController, private hockeyApp: HockeyApp, private iab: InAppBrowser) {
   }
 
-  openWebsite(){
+  public getResource(resource) {
+    // open a map page
+    this.navCtrl.push(MapPage, resource);
+  }
+
+  public openWebsite() {
+    // open urban refuge website
+    const browser = this.iab.create('http://www.urbanrefuge.org', '_self', {
+      zoom: 'no'
+    });
     this.hockeyApp.trackEvent("LAUNCHED_WEBSITE");
   }
 

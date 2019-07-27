@@ -1,9 +1,6 @@
 page-view-resource {
-  ion-content {
-    color: white !important;
-  }
 
-  ion-item {
+  ion-content, ion-item, p {
     color: white !important;
   }
 
@@ -37,4 +34,5 @@ page-view-resource {
   ion-icon {
     font-size: 3em;
   }
+
 }
